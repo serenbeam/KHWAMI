@@ -138,8 +138,7 @@ CREATE RECOMMENDATION
                     ↓
 3A CHANGE_DETECTION
           ├── 3A NO_CHANGE
-          ├── 3A PERMISSION
-          └── 3A HIGH_RISK_SCOPE_REVIEW
+          └── 3A PERMISSION
                     ↓
 3A EXECUTION
                     ↓
@@ -151,6 +150,9 @@ CREATE RECOMMENDATION
 The CREATE-specific stages are responsible for analysis and proposal content.
 The 3A states remain responsible for top-level navigation, anti-skip rules,
 change detection, permission, execution control, validation, and termination.
+Destructive, external, dependency-related, and other high-risk characteristics
+remain proposal properties and approved-scope constraints; they do not create a
+new CREATE or 3A state.
 
 CREATE analysis is read-only. No project file, configuration, dependency, Git
 state, or external resource may be changed before the 3A permission gate has
@@ -533,6 +535,11 @@ Validation:
 `REVIEW` items are not executable changes. They must be resolved or explicitly
 excluded before permission can be requested.
 
+Destructive, external, dependency-related, and other high-risk characteristics
+must be explicitly identified in the proposal and handled through the existing
+3A permission and approved-scope mechanisms. They do not introduce a separate
+workflow state.
+
 ---
 
 ## Interactive Review
@@ -677,7 +684,8 @@ Approval may be requested only after:
 3. the proposal has been presented for interactive review;
 4. the exact change set has been detected and scoped; and
 5. no blocking `REVIEW`, user-change conflict, or unresolved high-risk scope
-   remains.
+   remains; any high-risk operation is explicitly identified in the current
+   proposal and governed by the 3A permission and approved-scope rules.
 
 The permission interaction is:
 
@@ -997,7 +1005,6 @@ transitions.
 | `3A CHANGE_DETECTION` | Freeze the exact change set and compare it with current user work | Approved-scope candidate or a blocking conflict |
 | `3A NO_CHANGE` | Finish when no executable changes are required | No permission request |
 | `3A PERMISSION` | Collect only `y/yes` or `n/no` for the current proposal | Approval or analysis-only termination |
-| `3A HIGH_RISK_SCOPE_REVIEW` | Separate destructive or external effects from ordinary local changes | Explicitly bounded high-risk proposal |
 | `3A EXECUTION` | Apply only the approved local change set | Tracked execution result |
 | `3A VALIDATION` | Verify the result against the proposal and requirements | Validated, failed, blocked, or incomplete result |
 | `3A FINISH` | Report the terminal outcome | No implicit continuation or persisted approval |
@@ -1022,8 +1029,7 @@ CREATE_CONTEXT_DISCOVERY
         │                        ├── changes → revise affected CREATE stage
         │                        └── no changes → 3A CHANGE_DETECTION
         │                                             ├── NO_CHANGE
-        │                                             ├── PERMISSION
-        │                                             └── HIGH_RISK_SCOPE_REVIEW
+        │                                             └── PERMISSION
         └── meaningful existing work or boundary conflict
                  ↓
            3A CONTEXT_CLARIFICATION
