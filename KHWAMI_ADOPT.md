@@ -5,13 +5,13 @@ Status: Architectural Contract
 This document defines the KHWAMI ADOPT workflow. It is subordinate to:
 
 1. `KHWAMI_OPERATING_CONTRACT.md`;
-2. the finalized KHWAMI 3A Context Detection and Interactive Flow
-   architecture; and
-3. the finalized `KHWAMI_CREATE.md` contract.
+2. the public unified workflow architecture in
+   `KHWAMI_WORKFLOW_CONTROL.md`; and
+3. `KHWAMI_CREATE.md` where the workflow boundary requires comparison.
 
-Those authorities own the shared context, permission, scope, execution,
-validation, termination, and safety rules. This document defines only the
-ADOPT-specific analysis and proposal workflow.
+Those authorities own the shared Context Resolution, Permission, Approved
+Scope, Execution, Validation, termination, and safety rules. This document
+defines only the Existing Project Adoption analysis and proposal workflow.
 
 ADOPT does not implement the KHWAMI CLI, application code, repository changes,
 or a competing state machine.
@@ -75,7 +75,7 @@ Existing meaningful project analysis and controlled evolution.
 | Concern | CREATE | ADOPT |
 | --- | --- | --- |
 | Primary objective | Establish a new, clearly bounded target | Understand and safely evolve an existing meaningful target |
-| Starting condition | New or safely bounded target after 3A resolution | Meaningful existing implementation or project knowledge after 3A resolution |
+| Starting condition | New or safely bounded target after Context Resolution | Meaningful existing implementation or project knowledge after Context Resolution |
 | Default posture | Plan the minimum required project shape | Preserve existing decisions and conventions |
 | Main analysis | Intent, requirements, project shape, and creation proposal | Discovery, project understanding, reconciliation, architecture assessment, and scoped change proposal |
 | Main risk | Replacing or overwriting existing work while creating | Unnecessary restructuring or treating all discovered issues as scope |
@@ -84,28 +84,30 @@ An empty or metadata-only directory is not automatically ADOPT. Metadata such
 as `.git/`, a README, a package manifest, a lockfile, or an empty configuration
 file does not by itself establish a meaningful existing project.
 
-Meaningful implementation discovered during CREATE may require the 3A context
-rules to reassess the target. That does not silently make the project ADOPT.
+Meaningful implementation discovered during CREATE may require the Context
+Resolution rules to reassess the target. That does not silently make the
+project ADOPT.
 
 ADOPT must not silently become CREATE. If the developer actually wants a
 separate new project, a new application boundary, or replacement of existing
-work, the target and intent must be resolved through 3A before ADOPT continues.
+work, the target and intent must be resolved through Context Resolution before
+ADOPT continues.
 
 If the ADOPT target boundary changes materially, ADOPT must return to the
-applicable 3A context rules. It must not silently follow the new boundary or
-reinterpret the request.
+applicable Context Resolution rules. It must not silently follow the new
+boundary or reinterpret the request.
 
 ---
 
 ## Entry Conditions
 
-ADOPT may begin only after valid 3A context resolution.
+ADOPT may begin only after valid Context Resolution.
 
 All of the following conditions are required:
 
-1. The finalized 3A flow has been entered.
+1. The unified workflow has been entered.
 2. Context has resolved to `ADOPT` through valid detection or the required
-   `[Adopt]` context selection.
+   `[Adopt]` Context Selection.
 3. The target boundary is known.
 4. Meaningful existing implementation, project knowledge, or established
    project decisions are sufficiently evidenced for the selected target.
@@ -113,66 +115,70 @@ All of the following conditions are required:
    has been resolved.
 6. No execution permission has been inferred from context selection, the raw
    request, or the existence of the repository.
-7. The session has not reached `3A FINISH`.
+7. The session has not reached Terminal Result.
 
-The ADOPT-specific `ADOPT_ANALYSIS` stage begins only after these conditions
-are satisfied. `ADOPT_ANALYSIS` is an ADOPT-owned stage; it is not a new 3A
-state.
+The Existing Project Adoption analysis begins only after these conditions are
+satisfied. It remains an adoption-owned responsibility within the unified
+workflow.
 
 ADOPT must not begin directly from:
 
-- a raw user request without context detection;
-- a context-selection response using `y` or `n`;
+- a raw user request without Context Resolution;
+- a Context Selection response using `y` or `n`;
 - an execution-permission response;
 - an unbounded repository scan; or
 - a target whose relationship to existing meaningful work is unresolved.
 
 If meaningful evidence is not sufficient, the workflow must remain in the
-applicable 3A context path until the context is resolved. ADOPT must not infer
-its own default from uncertainty.
+applicable Context Resolution path until the context is resolved. ADOPT must
+not infer its own default from uncertainty.
 
 ---
 
 ## Workflow Overview
 
-The following is the ADOPT branch inside the finalized 3A workflow. The
-ADOPT-specific stages remain subordinate to the 3A controller.
+The following is the Existing Project Adoption branch inside the unified
+workflow. Adoption-specific responsibilities remain subordinate to the
+Workflow Controller.
 
 ```text
-3A CONTEXT_DETECTION / 3A CONTEXT_SELECTION
+Context Resolution / Context Selection
                     ↓
-ADOPT_ANALYSIS
+Existing Project Adoption Analysis
                     ↓
-ADOPT PROJECT DISCOVERY
+Project Discovery
                     ↓
-ADOPT PROJECT UNDERSTANDING
+Project Understanding
                     ↓
-ADOPT REQUIREMENT / INTENT RECONCILIATION
+Requirement Reconciliation
                     ↓
-ADOPT ARCHITECTURE ASSESSMENT
+Architecture Assessment
                     ↓
-ADOPT CHANGE IDENTIFICATION
+Change Identification
                     ↓
-3A PROPOSAL
-  └── ADOPT INTERACTIVE REVIEW
+Proposal
+  └── Interactive Review
                     ↓
-3A CHANGE_DETECTION
-          ├── 3A NO_CHANGE
-          └── 3A PERMISSION
+Change Detection
+          ├── No-Change Outcome
+          └── Permission
                     ↓
-3A EXECUTION
+Execution
                     ↓
-3A VALIDATION
+Validation
                     ↓
-3A FINISH
+Terminal Result
 ```
 
-The `3A ...` states in this flow remain owned by 3A. The unprefixed ADOPT
-stages are responsibilities of this document.
+The Existing Project Adoption responsibilities remain owned by this document.
+Context Resolution and Workflow Governance remain responsible for shared
+navigation, anti-skip behavior, Permission, Approved Scope coordination, and
+termination. `KHWAMI_WORKFLOW_CONTROL.md` coordinates Change Detection and the
+Execution and Validation handoffs.
 
-ADOPT-specific concerns are handled within the ADOPT stages and the existing
-proposal, approved-scope, permission, execution, validation, and termination
-mechanisms; they do not add to the 3A state model.
+Adoption-specific concerns are handled within these responsibilities and the
+shared proposal, permission, execution, validation, and termination mechanisms.
+They do not add to the unified workflow lifecycle.
 
 ---
 
@@ -612,8 +618,8 @@ affected requirements, project understanding, architecture assessment, and
 change identification. The proposal must show the new scope before permission.
 
 A scope expansion that changes the target boundary or changes CREATE/ADOPT
-meaning must return to the applicable 3A context rules. ADOPT must not silently
-continue under a materially different interpretation.
+meaning must return to the applicable Context Resolution rules. ADOPT must not
+silently continue under a materially different interpretation.
 
 ---
 
@@ -629,10 +635,9 @@ They must be:
 - associated with exact paths, targets, or operations where possible;
 - explained in terms the developer can understand;
 - included in the current approved scope only when explicitly shown; and
-- governed by the existing Operating Contract and finalized 3A permission
-  rules.
+- governed by the existing Operating Contract and shared Permission rules.
 
-These characteristics do not create a separate ADOPT or 3A state.
+These characteristics do not create a separate ADOPT or shared workflow state.
 
 Examples include:
 
@@ -767,8 +772,7 @@ The review must make clear:
 - how the result will be validated.
 
 Proposal presentation and review feedback are not execution permission. The
-shared 3A permission state must still follow proposal review and change
-detection.
+shared Permission state must still follow proposal review and Change Detection.
 
 ### Review changes
 
@@ -790,12 +794,12 @@ approval. The revised proposal must go through the shared proposal,
 change-detection, and permission controls again.
 
 If feedback changes the target boundary or reveals that the selected context is
-no longer appropriate, ADOPT must return to the applicable 3A context rules.
-It must not silently become CREATE or continue under a different target.
+no longer appropriate, ADOPT must return to the applicable Context Resolution
+rules. It must not silently become CREATE or continue under a different target.
 
 ---
 
-## No-Change Condition
+## No-Change Outcome
 
 If the current project already satisfies the developer's requested objective
 and no executable change is required, ADOPT must finish without requesting
@@ -816,8 +820,8 @@ No changes are required.
 KHWAMI finished.
 ```
 
-No-change behavior is governed by the Operating Contract and 3A. ADOPT must
-not:
+No-change behavior is governed by the Operating Contract and Context
+Resolution and Workflow Governance. ADOPT must not:
 
 - manufacture a change to produce a permission step;
 - create placeholder documentation;
@@ -832,8 +836,8 @@ must be clarified, deferred, or reported as unresolved without permission.
 
 ## Execution
 
-Execution remains governed by `KHWAMI_OPERATING_CONTRACT.md` and the finalized
-3A workflow.
+Execution remains governed by `KHWAMI_OPERATING_CONTRACT.md` and the unified
+workflow architecture.
 
 ADOPT may execute only the immediately preceding, explicit, approved proposal.
 
@@ -939,8 +943,8 @@ change. It must not silently rewrite the architecture.
 ### Unexpected existing work
 
 If discovery reveals meaningful work outside the resolved target or contradicts
-the selected boundary, KHWAMI must stop and return to the applicable 3A context
-rules. It must not silently expand the target or switch to CREATE.
+the selected boundary, KHWAMI must stop and return to the applicable Context
+Resolution rules. It must not silently expand the target or switch to CREATE.
 
 ### Existing user changes
 
@@ -996,136 +1000,133 @@ for file changes does not authorize the external operation.
 
 If required input is unavailable, EOF is received, or a material decision
 remains unresolved, KHWAMI must not choose a risky default. It must terminate,
-remain blocked, or request clarification according to the shared 3A behavior.
+remain blocked, or request clarification according to the shared workflow
+behavior.
 
 ---
 
 ## State Model
 
-This section distinguishes the finalized 3A states used by ADOPT from the
-ADOPT-specific stages contained within the 3A analysis and proposal path.
+This section identifies Existing Project Adoption responsibilities within the
+unified workflow. It keeps those responsibilities distinct from shared
+Context Resolution, Proposal, Permission, Execution, Validation, and Terminal
+Result boundaries.
 
-ADOPT must not add, rename, extend, or redefine a 3A state.
+### Shared workflow responsibilities used by ADOPT
 
-### 3A-owned states used by ADOPT
-
-Only the following finalized 3A states are referenced by this contract:
-
-| 3A state | Ownership and role |
+| Responsibility | Ownership and role |
 | --- | --- |
-| `3A CONTEXT_DETECTION` | Determines whether the target is CREATE, ADOPT, or AMBIGUOUS using the finalized context rules |
-| `3A CONTEXT_SELECTION` | Collects the required `[Create]`, `[Adopt]`, or `[Esc]` context decision when necessary |
-| `3A PROPOSAL` | Holds the explicit proposal and the ADOPT interactive review activity |
-| `3A CHANGE_DETECTION` | Freezes the current change set and checks it against current project and user state |
-| `3A NO_CHANGE` | Terminates the workflow without permission when no executable change is required |
-| `3A PERMISSION` | Collects the shared case-insensitive `y/yes` or `n/no` decision for the current proposal |
-| `3A EXECUTION` | Executes only the immediately preceding approved proposal |
-| `3A VALIDATION` | Verifies the execution result and scope |
-| `3A FINISH` | Produces the terminal result and ends the session |
+| Context Resolution | Determines whether the target is CREATE, ADOPT, or AMBIGUOUS using the shared context rules |
+| Context Selection | Collects the required `[Create]`, `[Adopt]`, or `[Esc]` context decision when necessary |
+| Proposal | Holds the explicit proposal and the ADOPT Interactive Review activity |
+| Change Detection | Freezes the current change set and checks it against current project and user state |
+| No-Change Outcome | Terminates the workflow without Permission when no executable change is required |
+| Permission | Collects the shared case-insensitive `y/yes` or `n/no` decision for the current proposal |
+| Execution | Executes only the immediately preceding approved proposal within Approved Scope |
+| Validation | Verifies the execution result and scope |
+| Terminal Result | Produces the terminal result and ends the session |
 
-`ADOPT_ANALYSIS` is an ADOPT-specific stage. It must not be represented as a
-new 3A state unless a separately authoritative 3A architecture explicitly
-defines that identifier.
+### Existing Project Adoption responsibilities
 
-### ADOPT-owned stages
-
-| ADOPT stage | Responsibility | Required outcome |
+| Responsibility | Ownership and role | Required outcome |
 | --- | --- | --- |
-| `ADOPT_ANALYSIS` | Enter the ADOPT branch after valid context resolution | Bounded target and analysis objective |
-| `ADOPT_PROJECT_DISCOVERY` | Inspect relevant repository, environment, and project evidence read-only | Evidence record |
-| `ADOPT_PROJECT_UNDERSTANDING` | Describe identity, structure, architecture, conventions, constraints, risks, and unknowns | Structured project understanding |
-| `ADOPT_REQUIREMENT_RECONCILIATION` | Compare the current developer objective with existing requirements and project reality | Satisfied, conflicting, missing, and preserved areas |
-| `ADOPT_ARCHITECTURE_ASSESSMENT` | Evaluate current boundaries and risks without assuming a rewrite | Evidence-based architecture assessment |
-| `ADOPT_CHANGE_IDENTIFICATION` | Select only objective-relevant KEEP, UPDATE, CREATE, RENAME, DELETE, or REVIEW results | Bounded recommendation set |
-| `ADOPT_INTERACTIVE_REVIEW` | Present the proposal and incorporate developer feedback before permission | Current understandable proposal |
+| Existing Project Adoption Analysis | Enter the ADOPT branch after valid Context Resolution | Bounded target and analysis objective |
+| Project Discovery | Inspect relevant repository, environment, and project evidence read-only | Evidence record |
+| Project Understanding | Describe identity, structure, architecture, conventions, constraints, risks, and unknowns | Structured project understanding |
+| Requirement Reconciliation | Compare the current developer objective with existing requirements and project reality | Satisfied, conflicting, missing, and preserved areas |
+| Architecture Assessment | Evaluate current boundaries and risks without assuming a rewrite | Evidence-based architecture assessment |
+| Change Identification | Select only objective-relevant KEEP, UPDATE, CREATE, RENAME, DELETE, or REVIEW results | Bounded recommendation set |
+| Interactive Review | Present the proposal and incorporate developer feedback before Permission | Current understandable proposal |
 
-These stages are internal responsibilities of the ADOPT workflow. They do not
-create competing permission, context-selection, approval, or execution rules.
+These responsibilities belong to Existing Project Adoption. They do not create
+competing Permission, Context Selection, approval, or Execution mechanisms.
 
 ### Valid ADOPT transitions
 
 ```text
-3A CONTEXT_DETECTION / 3A CONTEXT_SELECTION
+Context Resolution / Context Selection
         ↓ resolved ADOPT context
-ADOPT_ANALYSIS
+Existing Project Adoption Analysis
         ↓
-ADOPT_PROJECT_DISCOVERY
+Project Discovery
         ↓
-ADOPT_PROJECT_UNDERSTANDING
+Project Understanding
         ↓
-ADOPT_REQUIREMENT_RECONCILIATION
+Requirement Reconciliation
         ↓
-ADOPT_ARCHITECTURE_ASSESSMENT
+Architecture Assessment
         ↓
-ADOPT_CHANGE_IDENTIFICATION
+Change Identification
         ↓
-3A PROPOSAL / ADOPT_INTERACTIVE_REVIEW
+Proposal / Interactive Review
         ↓ reviewed current proposal
-3A CHANGE_DETECTION
-        ├── 3A NO_CHANGE
-        └── 3A PERMISSION
-                ├── y/yes → 3A EXECUTION → 3A VALIDATION → 3A FINISH
-                └── n/no  → 3A FINISH
+Change Detection
+        ├── No-Change Outcome
+        └── Permission
+                ├── y/yes → Execution → Validation → Terminal Result
+                └── n/no  → Terminal Result
 ```
 
-If the target or workflow becomes ambiguous during an ADOPT stage, the flow
-must return to the applicable 3A context rules rather than silently selecting a
-new workflow.
+If the target or workflow becomes ambiguous during an ADOPT responsibility, the
+flow must return to the applicable Context Resolution rules rather than
+silently selecting a new workflow.
 
 If proposal feedback changes the target or material objective, the affected
-ADOPT stages must be revisited before the proposal returns to 3A change
-detection.
+ADOPT responsibilities must be revisited before the proposal returns to Change
+Detection.
 
 ### Forbidden transitions
 
 The following transitions are invalid:
 
 ```text
-3A CONTEXT_DETECTION → 3A EXECUTION
-3A CONTEXT_DETECTION → 3A PERMISSION
-3A CONTEXT_SELECTION → 3A EXECUTION
-3A CONTEXT_SELECTION → 3A PERMISSION
-ADOPT_PROJECT_DISCOVERY → 3A EXECUTION
-ADOPT_PROJECT_DISCOVERY → 3A PERMISSION
-ADOPT_PROJECT_UNDERSTANDING → 3A EXECUTION
-ADOPT_CHANGE_IDENTIFICATION → 3A EXECUTION
-ADOPT_INTERACTIVE_REVIEW → 3A EXECUTION
-ADOPT_INTERACTIVE_REVIEW → 3A VALIDATION
-3A PROPOSAL → 3A EXECUTION
-3A NO_CHANGE → 3A PERMISSION
-3A NO_CHANGE → 3A EXECUTION
-3A PERMISSION → 3A EXECUTION for any input other than y/yes
-3A EXECUTION → additional unapproved execution
-3A VALIDATION → automatic repair
-3A FINISH → continuation within the same session
+Context Resolution → Execution
+Context Resolution → Permission
+Context Selection → Execution
+Context Selection → Permission
+Project Discovery → Execution
+Project Discovery → Permission
+Project Understanding → Execution
+Change Identification → Execution
+Interactive Review → Execution
+Interactive Review → Validation
+Proposal → Execution
+No-Change Outcome → Permission
+No-Change Outcome → Execution
+Permission → Execution for any input other than y/yes
+Execution → additional unapproved execution
+Validation → automatic repair
+Terminal Result → continuation within the same session
 ```
 
-A new ADOPT analysis after `3A FINISH` requires a new applicable 3A flow. The
-previous ADOPT state, target, proposal, and approval must not persist.
+A new ADOPT analysis after Terminal Result requires a new unified workflow
+session. The previous ADOPT state, target, proposal, and approval must not
+persist.
 
 ---
 
-## Relationship with 3A and Operating Contract
+## Relationship with the Unified Workflow Architecture and Operating Contract
 
-### 3A owns
+### Context Resolution and Workflow Governance owns
 
-The finalized 3A architecture owns:
+Context Resolution and Workflow Governance owns:
 
-- context detection;
+- Context Resolution;
 - CREATE, ADOPT, and AMBIGUOUS determination;
 - context selection;
 - target clarification;
 - top-level navigation;
 - anti-skip behavior;
-- the separation between context selection and permission;
-- `y/yes` and `n/no` permission semantics;
-- approved-scope behavior;
+- the separation between context selection and Permission;
+- `y/yes` and `n/no` Permission semantics;
+- Approved Scope coordination;
 - No-Change behavior;
-- `Esc` behavior;
-- session termination and re-analysis; and
-- the shared execution and validation flow.
+- Context Resolution exit behavior; and
+- session termination and re-analysis.
 
-ADOPT references these responsibilities and does not redefine them.
+The public integration of these responsibilities is defined in
+`KHWAMI_WORKFLOW_CONTROL.md`. ADOPT references these responsibilities and does
+not redefine them.
 
 ### Operating Contract owns
 
@@ -1177,7 +1178,7 @@ This document owns:
 
 ---
 
-## CLI Boundary
+## CLI Presentation Layer
 
 CLI behavior remains outside this contract.
 
@@ -1191,7 +1192,7 @@ A future CLI may:
 - show execution progress; and
 - show validation results.
 
-The CLI must call the shared state controller. It must not independently decide:
+The CLI must call the shared Workflow Controller. It must not independently decide:
 
 - CREATE versus ADOPT;
 - permission;
@@ -1207,7 +1208,7 @@ selection, automatic adoption, automatic restructuring, or automatic repair.
 
 ## Implementation Invariants
 
-1. ADOPT requires valid 3A context resolution.
+1. ADOPT requires valid Context Resolution.
 2. ADOPT requires a bounded target containing sufficiently evidenced meaningful
    existing project work or knowledge.
 3. Empty or metadata-only targets are not automatically ADOPT.
@@ -1224,32 +1225,34 @@ selection, automatic adoption, automatic restructuring, or automatic repair.
     project artifacts.
 12. Scope does not expand silently.
 13. A complete ADOPT analysis precedes the proposal.
-14. The proposal precedes permission and execution.
-15. Permission remains owned by 3A and the Operating Contract.
+14. The proposal precedes Permission and Execution.
+15. Permission remains owned by Context Resolution and Workflow Governance and
+    the Operating Contract.
 16. `y/yes` approves only the immediately preceding explicit proposal.
 17. Material proposal changes invalidate previous approval.
 18. Destructive, external, dependency-related, security-sensitive,
     migration-related, and other high-risk operations require explicit proposal
-    treatment and approved scope.
-19. No high-risk characteristic creates a new 3A state.
-20. The No-Change Condition bypasses permission and creates no placeholder work.
+    treatment and Approved Scope.
+19. No high-risk characteristic creates a new workflow state.
+20. The No-Change Outcome bypasses Permission and creates no placeholder work.
 21. Execution affects only the approved proposal.
-22. Unexpected scope or conflicts stop execution.
+22. Unexpected scope or conflicts stop Execution.
 23. Existing user changes are never reset, reverted, discarded, or silently
     overwritten.
 24. Validation is required before claiming successful adoption.
 25. Validation failure does not automatically trigger repair.
 26. Unavailable validation checks are reported honestly.
 27. ADOPT cannot silently become CREATE.
-28. A target-boundary change returns to the applicable 3A context rules.
-29. ADOPT cannot redefine, rename, extend, or add a 3A state.
-30. ADOPT cannot skip any applicable ADOPT analysis stage or any applicable 3A
-    proposal, change-detection, permission, execution, or validation stage. The
-    applicable 3A path depends on whether the current proposal results in
-    NO_CHANGE or an executable approved change.
+28. A target-boundary change returns to Context Resolution.
+29. ADOPT cannot redefine or add a shared workflow responsibility.
+30. ADOPT cannot skip any applicable ADOPT analysis responsibility or any
+    applicable Proposal, Change Detection, Permission, Execution, or Validation
+    responsibility. The applicable path depends on whether the current proposal
+    results in No-Change Outcome or an executable approved change.
 31. The CLI remains a presentation and input boundary, not the owner of ADOPT
     policy or state transitions.
-32. ADOPT state, proposal state, and approval do not persist after `3A FINISH`.
-33. A new analysis requires a new applicable 3A flow.
+32. ADOPT state, proposal state, and approval do not persist after Terminal
+    Result.
+33. A new analysis requires a new unified workflow session.
 34. This document does not define the ADOPT behavior of any other system and
     does not implement the CLI or application code.

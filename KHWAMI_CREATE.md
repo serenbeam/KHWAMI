@@ -3,10 +3,10 @@
 Status: Architectural Contract
 
 This document defines the KHWAMI CREATE workflow. It is subordinate to
-`KHWAMI_OPERATING_CONTRACT.md` and the finalized 3A Context Detection and
-Interactive Flow architecture.
+`KHWAMI_OPERATING_CONTRACT.md` and the public unified workflow architecture in
+`KHWAMI_WORKFLOW_CONTROL.md`.
 
-The KHWAMI operating contract, 3A state rules, permission semantics, approved
+The Operating Contract, Context Resolution and Workflow Governance, approved
 scope rules, existing-work protections, external-operation boundaries,
 destructive-operation boundaries, and no-change behavior remain authoritative.
 This document defines only the CREATE-specific workflow.
@@ -40,8 +40,8 @@ A CREATE target may be:
   clear;
 - a separate directory, repository, branch, or application boundary selected
   by the developer; or
-- another explicitly bounded new project target approved by the 3A context
-  flow.
+- another explicitly bounded new project target approved through Context
+  Resolution.
 
 CREATE does not mean:
 
@@ -57,15 +57,15 @@ CREATE establishes a new target. ADOPT analyzes and preserves an already
 meaningful existing project. The two workflows have different analysis goals
 and must not be silently substituted for one another.
 
-An empty directory does not automatically establish CREATE. The 3A Context
-Detection rules must consider user intent, repository evidence, metadata,
+An empty directory does not automatically establish CREATE. The Context
+Resolution rules must consider user intent, repository evidence, metadata,
 meaningful implementation, conflicts, confidence, and target boundaries first.
 
 Likewise, a CREATE decision does not authorize replacement of an existing
 project. If meaningful existing implementation is discovered at the intended
-target, KHWAMI must return to the 3A context clarification rules. A separate
-boundary may be selected, or intentional replacement may be handled as a
-separately identified destructive scope.
+target, KHWAMI must return to the Context Resolution clarification rules. A
+separate boundary may be selected, or intentional replacement may be handled as
+a separately identified destructive scope.
 
 ---
 
@@ -73,26 +73,26 @@ separately identified destructive scope.
 
 CREATE may begin only when all of the following are true:
 
-1. The session has entered the finalized 3A flow.
-2. Context Detection has produced `CREATE`, or the developer has selected
-   `[Create]` in the required 3A context-selection interaction.
+1. The session has entered the unified workflow.
+2. Context Resolution has produced `CREATE`, or the developer has selected
+   `[Create]` in the required Context Selection interaction.
 3. The target boundary is known and does not silently imply replacement of
    meaningful existing work.
 4. Any ambiguity that materially affects the target or workflow has been
-   resolved through 3A clarification.
+   resolved through Context Resolution clarification.
 5. No execution permission has been inferred from context selection or user
    language.
-6. The session is still active and has not reached `FINISH`.
+6. The session is still active and has not reached Terminal Result.
 
-The 3A flow may select CREATE automatically when the evidence and target are
-clear. It may also require an explicit `[Create]` selection when context is
-ambiguous. Both are valid CREATE entry paths only when the 3A guards have
-passed.
+Context Resolution may select CREATE automatically when the evidence and target
+are clear. It may also require an explicit `[Create]` selection when context is
+ambiguous. Both are valid CREATE entry paths only when the governance
+safeguards have passed.
 
 CREATE must not begin directly from:
 
-- a raw user request without context detection;
-- a context-selection prompt answered with `y` or `n`;
+- a raw user request without Context Resolution;
+- a Context Selection prompt answered with `y` or `n`;
 - a permission response;
 - a proposal that has not completed analysis; or
 - a target whose relationship to meaningful existing work is unresolved.
@@ -105,7 +105,7 @@ meaningful existing implementation, KHWAMI must:
 1. stop CREATE-specific progression;
 2. explain the newly discovered evidence;
 3. identify the conflict with the selected CREATE target;
-4. return to the applicable 3A context-clarification path; and
+4. return to the applicable Context Resolution clarification path; and
 5. wait for a new, explicit context decision if one is required.
 
 The discovery result may be safely retained as evidence, but it must not
@@ -115,48 +115,50 @@ silently change the active workflow.
 
 ## Workflow Overview
 
-The CREATE workflow is a branch inside the 3A unified workflow. It does not
-replace or redefine the 3A top-level state machine.
+The New Project Workflow is a branch inside the unified workflow architecture.
+It does not replace or redefine the shared workflow lifecycle.
 
 ```text
-3A CONTEXT_DETECTION / CONTEXT_SELECTION
+Context Resolution / Context Selection
                     ↓
-3A CREATE_ANALYSIS
+New Project Workflow Analysis
                     ↓
-CREATE INTENT DISCOVERY
+Intent Discovery
                     ↓
-CREATE CONTEXT AND ENVIRONMENT DISCOVERY
+Context and Environment Discovery
                     ↓
-CREATE REQUIREMENT SYNTHESIS
+Requirement Synthesis
                     ↓
-CREATE PROJECT SHAPE
+Project Shape
                     ↓
-CREATE RECOMMENDATION
+Recommendation
                     ↓
-3A PROPOSAL
-  └── CREATE INTERACTIVE REVIEW
+Proposal
+  └── Interactive Review
                     ↓
-3A CHANGE_DETECTION
-          ├── 3A NO_CHANGE
-          └── 3A PERMISSION
+Change Detection
+          ├── No-Change Outcome
+          └── Permission
                     ↓
-3A EXECUTION
+Execution
                     ↓
-3A VALIDATION
+Validation
                     ↓
-3A FINISH
+Terminal Result
 ```
 
-The CREATE-specific stages are responsible for analysis and proposal content.
-The 3A states remain responsible for top-level navigation, anti-skip rules,
-change detection, permission, execution control, validation, and termination.
-Destructive, external, dependency-related, and other high-risk characteristics
-remain proposal properties and approved-scope constraints; they do not create a
-new CREATE or 3A state.
+The New Project Workflow stages are responsible for analysis and proposal
+content. Context Resolution and Workflow Governance remain responsible for
+shared navigation, anti-skip behavior, Permission, Approved Scope coordination,
+and termination. `KHWAMI_WORKFLOW_CONTROL.md` coordinates Change Detection and
+the Execution and Validation handoffs. Destructive, external,
+dependency-related, and other high-risk characteristics remain proposal
+properties and approved-scope constraints; they do not create a new workflow or
+state.
 
 CREATE analysis is read-only. No project file, configuration, dependency, Git
-state, or external resource may be changed before the 3A permission gate has
-approved an explicit proposal.
+state, or external resource may be changed before the shared Permission gate
+has approved an explicit proposal.
 
 ---
 
@@ -246,7 +248,7 @@ workflow interaction for:
 - a proposal that has materially changed since it was last reviewed.
 
 Confirmation of a proposal is not permission to execute it. Execution remains
-controlled by the 3A permission state.
+controlled by the shared Permission state.
 
 ---
 
@@ -305,8 +307,8 @@ proposal if it may be affected.
 If discovery finds source code, application entry points, domain modules,
 connected tests, meaningful platform configuration, coherent project
 knowledge, or other meaningful implementation at the target, CREATE must not
-pretend that the target is blank. The result must be handled using the 3A
-context rules.
+pretend that the target is blank. The result must be handled using the Context
+Resolution rules.
 
 If the new project target is explicitly separate from an existing host
 repository, CREATE may continue for the new target while clearly displaying:
@@ -536,8 +538,8 @@ Validation:
 excluded before permission can be requested.
 
 Destructive, external, dependency-related, and other high-risk characteristics
-must be explicitly identified in the proposal and handled through the existing
-3A permission and approved-scope mechanisms. They do not introduce a separate
+must be explicitly identified in the proposal and handled through the shared
+Permission and Approved Scope mechanisms. They do not introduce a separate
 workflow state.
 
 ---
@@ -562,7 +564,7 @@ understand:
 - how the result will be validated.
 
 A proposal review is not execution permission. The proposal must be shown
-before the 3A permission state is entered.
+before the shared Permission state is entered.
 
 A CREATE review should conceptually use a structure such as:
 
@@ -613,7 +615,7 @@ Changes requested?
   │     ↓
   │   Freeze current proposal
   │     ↓
-  │   3A CHANGE_DETECTION
+  │   Change Detection
   │
   └── Yes
         ↓
@@ -625,7 +627,8 @@ Changes requested?
 ```
 
 The words “no changes requested” in this review flow are not the `n/no`
-permission response. Permission remains a separate 3A state.
+permission response. Permission remains a separate shared workflow
+responsibility.
 
 ### Material proposal changes
 
@@ -644,7 +647,7 @@ A change is material when it affects any of the following:
 
 A material change requires a revised proposal and renewed review. If the
 previous proposal was already approved, the approval is invalidated and a new
-3A permission decision is required.
+Permission decision is required.
 
 KHWAMI must not silently apply a developer's feedback to an old proposal while
 executing it.
@@ -652,8 +655,8 @@ executing it.
 ### Context-affecting changes
 
 If feedback changes the target boundary or reveals meaningful existing work,
-CREATE must return to the applicable 3A context-clarification path. It must not
-silently switch to ADOPT or interpret the request as replacement.
+CREATE must return to the applicable Context Resolution clarification path. It
+must not silently switch to ADOPT or interpret the request as replacement.
 
 ### New architectural decisions
 
@@ -674,8 +677,8 @@ proposal.
 
 ## Approval
 
-Approval is governed exclusively by the KHWAMI Operating Contract and the
-finalized 3A architecture.
+Approval is governed by the KHWAMI Operating Contract and Context Resolution
+and Workflow Governance, as integrated by `KHWAMI_WORKFLOW_CONTROL.md`.
 
 Approval may be requested only after:
 
@@ -685,7 +688,7 @@ Approval may be requested only after:
 4. the exact change set has been detected and scoped; and
 5. no blocking `REVIEW`, user-change conflict, or unresolved high-risk scope
    remains; any high-risk operation is explicitly identified in the current
-   proposal and governed by the 3A permission and approved-scope rules.
+   proposal and governed by the shared Permission and Approved Scope rules.
 
 The permission interaction is:
 
@@ -736,11 +739,11 @@ A prior approval never persists into a new proposal or new KHWAMI invocation.
 `n` or `no` ends execution and leaves the result analysis-only. No CREATE
 changes may be made.
 
-`Esc` is a context-level 3A exit action, not a third CREATE permission
+`Esc` is a Context Resolution exit action, not a third CREATE permission
 response. It must never be used as an alternative spelling of `n/no` and must
 not be interpreted as approval rejection inside the permission policy. If the
-active 3A interaction exposes the context-level exit action, its behavior is
-governed by 3A:
+active Context Resolution interaction exposes the exit action, its behavior is
+governed by Context Resolution and Workflow Governance:
 
 ```text
 KHWAMI exited.
@@ -932,8 +935,8 @@ choose a different project shape to hide the limitation.
 ### Unexpected existing artifact
 
 If discovery or execution reveals meaningful existing implementation at the
-CREATE target, KHWAMI must stop and use the 3A context-clarification rules. It
-must not overwrite, delete, or silently adopt that material.
+CREATE target, KHWAMI must stop and use the Context Resolution clarification
+rules. It must not overwrite, delete, or silently adopt that material.
 
 ### Existing user changes
 
@@ -946,13 +949,14 @@ revert, check out over, or discard the user change.
 If required interactive input is unavailable, EOF is received, or the user
 leaves a required decision unresolved, KHWAMI must not choose a default that
 could change the project. It must finish as blocked, incomplete, or exited
-according to the applicable 3A behavior.
+according to the applicable shared workflow behavior.
 
 ---
 
-## No-Change Condition
+## No-Change Outcome
 
-CREATE must preserve the 3A and Operating Contract No-Change Condition.
+CREATE must preserve the shared workflow's No-Change Outcome and the Operating
+Contract's No-Change Condition.
 
 If analysis determines that the requested CREATE state has already been
 achieved and no changes are required, KHWAMI must finish without requesting
@@ -978,7 +982,8 @@ KHWAMI must not:
 - create placeholder files;
 - modify a file merely to produce an execution step;
 - ask for `y/yes` or `n/no` when there is nothing to execute; or
-- convert a no-change result into ADOPT without a new 3A context decision.
+- convert a no-change result into ADOPT without a new Context Resolution
+  decision.
 
 `KEEP` findings do not create an executable change. A material unresolved
 `REVIEW` item is not a no-change result; it must be clarified, deferred, or
@@ -988,74 +993,76 @@ reported as unresolved without requesting execution permission.
 
 ## State Model
 
-The following is the CREATE subflow inside the finalized 3A state model. It
-identifies CREATE responsibilities without redefining 3A's top-level states or
-transitions.
+The following is the New Project Workflow subflow inside the unified workflow
+architecture. It identifies CREATE responsibilities without redefining shared
+workflow-governance responsibilities or transitions.
 
-| CREATE stage | Responsibility | Required outcome |
+| Workflow responsibility | Responsibility | Required outcome |
 | --- | --- | --- |
-| `3A CREATE_ANALYSIS` | Enter the CREATE branch after valid 3A context resolution | A bounded CREATE session target |
-| `CREATE_INTENT_DISCOVERY` | Understand purpose, scope, users, constraints, and requested outcome | A normalized intent record |
-| `CREATE_CONTEXT_DISCOVERY` | Inspect the target and local environment without side effects | Evidence, feasibility findings, and safety status |
-| `CREATE_REQUIREMENT_SYNTHESIS` | Separate explicit requirements, derived information, assumptions, and unresolved decisions | A reviewable project understanding |
-| `CREATE_REQUIREMENTS_CLARIFICATION` | Resolve material missing or conflicting information | Sufficient requirements or a safe blocked outcome |
-| `CREATE_PROJECT_SHAPE` | Determine the minimum proportionate project direction | A bounded project shape or explicit alternatives |
-| `CREATE_RECOMMENDATION` | Select and explain the minimum justified project changes | Actionable recommendations or `REVIEW` items |
-| `3A PROPOSAL` / `CREATE_INTERACTIVE_REVIEW` | Present the project proposal and collect corrections before approval | A current, understandable proposal |
-| `3A CHANGE_DETECTION` | Freeze the exact change set and compare it with current user work | Approved-scope candidate or a blocking conflict |
-| `3A NO_CHANGE` | Finish when no executable changes are required | No permission request |
-| `3A PERMISSION` | Collect only `y/yes` or `n/no` for the current proposal | Approval or analysis-only termination |
-| `3A EXECUTION` | Apply only the approved local change set | Tracked execution result |
-| `3A VALIDATION` | Verify the result against the proposal and requirements | Validated, failed, blocked, or incomplete result |
-| `3A FINISH` | Report the terminal outcome | No implicit continuation or persisted approval |
+| New Project Workflow Analysis | Enter the CREATE branch after valid Context Resolution | A bounded CREATE session target |
+| Intent Discovery | Understand purpose, scope, users, constraints, and requested outcome | A normalized intent record |
+| Context and Environment Discovery | Inspect the target and local environment without side effects | Evidence, feasibility findings, and safety status |
+| Requirement Synthesis | Separate explicit requirements, derived information, assumptions, and unresolved decisions | A reviewable project understanding |
+| Requirements Clarification | Resolve material missing or conflicting information | Sufficient requirements or a safe blocked outcome |
+| Project Shape | Determine the minimum proportionate project direction | A bounded project shape or explicit alternatives |
+| Recommendation | Select and explain the minimum justified project changes | Actionable recommendations or `REVIEW` items |
+| Proposal / Interactive Review | Present the project proposal and collect corrections before approval | A current, understandable proposal |
+| Change Detection | Freeze the exact change set and compare it with current user work | Approved-scope candidate or a blocking conflict |
+| No-Change Outcome | Finish when no executable changes are required | No permission request |
+| Permission | Collect the shared permission decision for the current proposal | Approval or analysis-only termination |
+| Execution | Apply only the approved local change set | Tracked execution result |
+| Validation | Verify the result against the proposal and requirements | Validated, failed, blocked, or incomplete result |
+| Terminal Result | Report the terminal outcome | No implicit continuation or persisted approval |
 
 ### CREATE-specific transitions
 
 ```text
-CREATE_ANALYSIS
+Context Resolution / Context Selection
         ↓
-CREATE_INTENT_DISCOVERY
+New Project Workflow Analysis
         ↓
-CREATE_CONTEXT_DISCOVERY
+Intent Discovery
+        ↓
+Context and Environment Discovery
         ├── valid CREATE target
         │        ↓
-        │  CREATE_REQUIREMENT_SYNTHESIS
-        │        ├── material gap → CREATE_REQUIREMENTS_CLARIFICATION
-        │        └── sufficient → CREATE_PROJECT_SHAPE
+        │  Requirement Synthesis
+        │        ├── material gap → Requirements Clarification
+        │        └── sufficient → Project Shape
         │                              ↓
-        │                        CREATE_RECOMMENDATION
+        │                        Recommendation
         │                              ↓
-        │                 3A PROPOSAL / INTERACTIVE_REVIEW
-        │                        ├── changes → revise affected CREATE stage
-        │                        └── no changes → 3A CHANGE_DETECTION
-        │                                             ├── NO_CHANGE
-        │                                             └── PERMISSION
+        │                 Proposal / Interactive Review
+        │                        ├── changes → revise affected CREATE responsibility
+        │                        └── no changes → Change Detection
+        │                                             ├── No-Change Outcome
+        │                                             └── Permission
         └── meaningful existing work or boundary conflict
                  ↓
-           3A CONTEXT_CLARIFICATION
+           Context Resolution clarification
 ```
 
 The following transitions are not permitted:
 
 ```text
-CREATE_CONTEXT_DISCOVERY → EXECUTION
-CREATE_CONTEXT_DISCOVERY → PERMISSION
-CREATE_REQUIREMENT_SYNTHESIS → EXECUTION
-CREATE_PROJECT_SHAPE → EXECUTION
-CREATE_RECOMMENDATION → EXECUTION
-CREATE_INTERACTIVE_REVIEW → EXECUTION
-CREATE_INTERACTIVE_REVIEW → VALIDATION
-3A PROPOSAL → EXECUTION
-3A NO_CHANGE → PERMISSION
-3A NO_CHANGE → EXECUTION
-3A PERMISSION → EXECUTION for any input other than y/yes
-3A EXECUTION → additional unapproved execution
-3A VALIDATION → automatic correction
-3A FINISH → continuation within the same session
+Context and Environment Discovery → Execution
+Context and Environment Discovery → Permission
+Requirement Synthesis → Execution
+Project Shape → Execution
+Recommendation → Execution
+Interactive Review → Execution
+Interactive Review → Validation
+Proposal → Execution
+No-Change Outcome → Permission
+No-Change Outcome → Execution
+Permission → Execution for any input other than y/yes
+Execution → additional unapproved execution
+Validation → automatic correction
+Terminal Result → continuation within the same session
 ```
 
-A new CREATE analysis after `FINISH` requires a new KHWAMI invocation and a new
-3A `START` state. Previous CREATE decisions and approvals must not persist.
+A new CREATE analysis after Terminal Result requires a new KHWAMI session and a
+new Session Start. Previous CREATE decisions and approvals must not persist.
 
 ---
 
@@ -1065,8 +1072,8 @@ CREATE must never:
 
 - silently adopt an existing project;
 - silently change the target boundary;
-- treat an empty directory as sufficient context evidence without applying 3A
-  rules;
+- treat an empty directory as sufficient context evidence without applying
+  Context Resolution rules;
 - treat metadata alone as meaningful implementation;
 - treat assumptions as explicit requirements;
 - silently select a consequential technology when requirements are insufficient;
@@ -1074,41 +1081,43 @@ CREATE must never:
 - overwrite pre-existing user changes;
 - install dependencies automatically;
 - perform external operations without their required separate approval;
-- execute without the current 3A permission gate;
+- execute without the shared Permission gate;
 - reuse stale approval after a material proposal change;
 - execute changes outside the approved proposal;
 - continue after an unexpected artifact or scope conflict;
-- skip intent, requirements, proposal, change detection, approval, execution,
-  or validation stages;
-- create placeholder changes to avoid the No-Change Condition;
+- skip intent, requirements, proposal, Change Detection, Permission, Execution,
+  or Validation responsibilities;
+- create placeholder changes to avoid the No-Change Outcome;
 - claim success without successful applicable validation;
 - hide incomplete requirements, execution failures, or unavailable checks;
 - implement CLI-specific behavior inside this contract;
-- define the ADOPT workflow; or
-- redefine the finalized 3A state machine.
+- define the Existing Project Adoption workflow; or
+- redefine the unified workflow lifecycle.
 
 ---
 
-## Relationship with KHWAMI Core / 3A
+## Relationship with the Unified Workflow Architecture and Operating Contract
 
-### 3A owns
+### Context Resolution and Workflow Governance owns
 
-The finalized 3A architecture owns:
+Context Resolution and Workflow Governance owns:
 
-- context detection;
+- Context Resolution;
 - metadata versus meaningful implementation classification;
 - CREATE, ADOPT, and AMBIGUOUS determination;
 - target-boundary clarification;
 - `[Create]`, `[Adopt]`, and `[Esc]` context interaction;
 - top-level interactive navigation;
-- anti-skip rules;
+- anti-skip behavior;
 - the distinction between context selection and execution permission;
-- `y/yes` and `n/no` permission semantics;
-- approved-scope enforcement;
-- no-change behavior;
-- context-level `Esc` behavior;
-- session termination and re-analysis rules; and
-- the shared execution and validation controls.
+- `y/yes` and `n/no` Permission semantics;
+- Approved Scope coordination;
+- No-Change behavior;
+- Context Resolution exit behavior; and
+- session termination and re-analysis rules.
+
+The public integration of these responsibilities is defined in
+`KHWAMI_WORKFLOW_CONTROL.md`.
 
 ### The Operating Contract owns
 
@@ -1140,34 +1149,34 @@ This document owns:
 - CREATE execution expectations; and
 - CREATE validation expectations.
 
-CREATE may use the shared rules, but it must not create a separate permission
-system or contradict the Core or 3A architecture.
+CREATE may use the shared rules, but it must not create a separate Permission
+system or contradict the unified workflow architecture.
 
-### CLI boundary
+### CLI Presentation Layer
 
-A future CLI may render CREATE stages, collect input, display proposals, and
-show execution and validation results. CLI presentation and input mechanics
-are outside this document. The CLI must call the shared state controller and
-must not independently decide context, permission, scope, or CREATE business
-rules.
+A future CLI may render CREATE responsibilities, collect input, display
+proposals, and show execution and validation results. CLI presentation and
+input mechanics are outside this document. The CLI must call the shared
+Workflow Controller and must not independently decide context, Permission,
+scope, or CREATE business rules.
 
 ---
 
 ## Implementation Invariants
 
-1. CREATE cannot start without a valid 3A CREATE context decision and a bounded
-   target.
-2. CREATE cannot silently become ADOPT.
+1. CREATE cannot start without a valid Context Resolution decision for the New
+   Project Workflow and a bounded target.
+2. CREATE cannot silently become Existing Project Adoption.
 3. A CREATE target containing meaningful existing work must be returned to the
-   3A context-clarification rules.
+   Context Resolution clarification process.
 4. Metadata alone must not be treated as meaningful implementation.
 5. CREATE analysis and discovery are read-only.
 6. Explicit requirements, evidence-derived information, assumptions, and
    unresolved decisions must remain distinguishable.
 7. KHWAMI asks only questions whose answers materially affect safety, scope,
    architecture, execution, or validation.
-8. A complete project proposal must precede change detection and permission.
-9. Proposal review is separate from execution permission.
+8. A complete project proposal must precede Change Detection and Permission.
+9. Interactive Review is separate from execution Permission.
 10. A material proposal change invalidates any previous approval.
 11. Permission accepts only case-insensitive `y`, `yes`, `n`, or `no`.
 12. `y/yes` authorizes only the immediately preceding explicit proposal.
@@ -1178,12 +1187,13 @@ rules.
 15. Validation is required before CREATE can be reported as successful.
 16. Validation failure or unavailable checks must be reported honestly and must
     not trigger automatic corrective changes.
-17. The No-Change Condition bypasses permission and creates no placeholder work.
-18. CREATE must not skip required 3A or CREATE stages because the developer
-    requests immediate execution.
-19. Context-level `Esc` is distinct from permission rejection and never grants
-    or denies execution by implication.
-20. CREATE state and approval do not persist after `FINISH`; another analysis
-    requires a new KHWAMI invocation.
+17. The No-Change Outcome bypasses Permission and creates no placeholder work.
+18. CREATE must not skip required Context Resolution, analysis, Proposal,
+    Change Detection, Permission, Execution, or Validation responsibilities
+    because the developer requests immediate execution.
+19. Context Resolution exit is distinct from Permission rejection and never
+    grants or denies execution by implication.
+20. CREATE state and approval do not persist after Terminal Result; another
+    analysis requires a new KHWAMI session.
 21. CLI rendering and input handling remain outside the CREATE contract.
-22. This document does not define ADOPT behavior.
+22. This document does not define Existing Project Adoption behavior.
