@@ -267,6 +267,67 @@ evidence. Mark unavailable information `UNKNOWN` or `INSUFFICIENT EVIDENCE`.
 
 Do not invent requirements, constraints, ownership, or project facts.
 
+## Evidence and Decision Status
+
+Classify evidence and decisions separately. These classifications are analysis
+metadata for the current assessment. They are not workflow contexts, workflow
+states, proposal actions, permission states, execution states, or validation
+states. They inform analysis and decision-making only; they do not control
+workflow transitions or create an alternative workflow state machine.
+
+### Evidence status
+
+Use these labels for the availability and strength of information:
+
+- `CONFIRMED` — the information is supported by observable project evidence.
+- `UNKNOWN` — no established knowledge or decision is currently available.
+- `INSUFFICIENT EVIDENCE` — a likely answer, candidate interpretation, or
+  indication may exist, but the available evidence is not sufficient to
+  establish it confidently.
+
+`UNKNOWN` does not imply that a likely answer has been identified, that the
+answer is merely undocumented, or that an assumption has become accepted fact.
+`INSUFFICIENT EVIDENCE` does not establish its candidate answer or
+interpretation as fact.
+
+### Decision status
+
+Use decision status independently from evidence status:
+
+- `PROPOSED` — an assessment, recommendation, candidate decision, or proposed
+  interpretation pending appropriate confirmation.
+- `CONFIRMED` — the appropriate authority explicitly accepted the decision;
+  record its evidence, rationale, action, owner, and target path.
+
+A `CONFIRMED` evidence status does not automatically confirm a project decision.
+A `PROPOSED` decision does not become confirmed because it is reasonable,
+well-supported, documented, or recommended. It does not constitute a confirmed
+project fact, approved scope, execution authorization, or permission to modify
+the project.
+
+Where applicable, the progression is:
+
+```text
+Evidence → Assessment → Recommendation or Proposal → Confirmation
+```
+
+The agent may continue with a non-blocking unknown when it does not materially
+affect the current requirements, constraints, authority, ownership,
+source-of-truth selection, or safety of the recommendation. Keep the uncertainty
+and any bounded assumption explicit.
+
+The agent must ask for clarification when an unknown could materially change the
+required documentation role, action, source of truth, ownership, scope, or cause
+an irreversible or destructive change.
+
+Technology information may be `UNKNOWN`; do not invent an unstated technology
+choice. If technology is required for the current decision and remains unknown,
+ask for clarification or make an explicitly permitted recommendation. A
+recommendation or assumption must not silently convert unknown or insufficient
+technology evidence into a confirmed technology decision. Specific tool or
+technology adoption remains governed by the existing tool-selection rules and
+must not bypass the evidence gate.
+
 ## Priority and Action
 
 Classify priority independently from action:
