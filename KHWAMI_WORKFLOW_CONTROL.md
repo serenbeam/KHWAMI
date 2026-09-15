@@ -12,18 +12,16 @@ controller, application code, repository logic, or execution logic.
 
 The following authorities remain in force and are not redefined here:
 
-- `KHWAMI_OPERATING_CONTRACT.md` — universal operating rules, safety,
-  approved-scope policy, execution policy, validation policy, and reporting.
-- Context Resolution and Workflow Governance — context resolution, ambiguity
-  handling, context selection, anti-skip behavior, permission semantics, shared
-  navigation, and termination.
+- `KHWAMI_OPERATING_CONTRACT.md` — shared KHWAMI governance policy / WHAT,
+  including context governance, safety, approved-scope policy, Permission,
+  execution, validation, termination, and reporting.
 - `KHWAMI_CREATE.md` — New Project Workflow analysis, proposal content, and
   new-project-specific expectations.
 - `KHWAMI_ADOPT.md` — Existing Project Adoption analysis, proposal content,
   preservation-first expectations, and adoption-specific validation
   expectations.
 
-This document owns only their integration.
+This document owns only their integration and orchestration / HOW.
 
 ---
 
@@ -45,8 +43,7 @@ It defines:
 - orchestration-level failure and interruption routing.
 
 It does not replace the authoritative rules already owned by the Operating
-Contract, workflow governance, the New Project Workflow, or the Existing
-Project Adoption workflow.
+Contract, the New Project Workflow, or the Existing Project Adoption workflow.
 
 ---
 
@@ -54,8 +51,8 @@ Project Adoption workflow.
 
 The unified architecture follows these principles:
 
-- **One workflow authority** — one Workflow Controller governs lifecycle
-  progression for the session.
+- **One Workflow Controller** — one Workflow Controller governs lifecycle
+  progression for the session under the shared governance policy.
 - **Context before workflow analysis** — the applicable workflow must be
   resolved before workflow-specific analysis begins.
 - **Workflow context is not a proposal action** — the selected workflow and
@@ -115,8 +112,9 @@ Selected Workflow
 ```
 
 When context cannot be safely resolved from available evidence, the session
-remains in Context Resolution until workflow governance obtains the required
-clarification, a workflow is selected, or the session terminates safely.
+remains in Context Resolution until the Operating Contract's governance rules
+obtain the required clarification, a workflow is selected, or the session
+terminates safely.
 
 The New Project Workflow and Existing Project Adoption have different analysis
 responsibilities, but they converge into the same shared lifecycle once a
@@ -140,22 +138,24 @@ current proposal exists.
 - reporting policy.
 
 The unified architecture consumes these rules. It does not restate or replace
-them.
+them. Shared governance policy remains owned by
+`KHWAMI_OPERATING_CONTRACT.md`.
 
-### Context Resolution and Workflow Governance
+### Shared Governance Policy
 
-Context Resolution and Workflow Governance remains authoritative for:
+`KHWAMI_OPERATING_CONTRACT.md` remains authoritative for shared workflow
+governance policy, including:
 
-- context resolution;
-- ambiguity handling;
-- context selection;
-- anti-skip behavior;
-- permission semantics;
-- shared interaction navigation; and
-- session termination.
+- Context Detection, Context Resolution, Context Selection, Ambiguity Handling,
+  and Target Clarification semantics;
+- anti-skip behavior and valid navigation conditions;
+- Permission semantics and approval invalidation;
+- Approved Scope policy;
+- shared reanalysis and material-change behavior; and
+- termination and new-lifecycle behavior.
 
-The unified architecture depends on this responsibility. It does not create a
-second governance system.
+Workflow Control applies and coordinates these rules through the one Workflow
+Controller. It does not create or redefine a second governance system.
 
 ### New Project Workflow
 
@@ -221,12 +221,12 @@ The unified architecture keeps the following concepts separate.
 | Concept | Meaning | Authority | Mutability |
 | --- | --- | --- | --- |
 | Workflow State | Where the session currently is in the shared lifecycle | Workflow Controller | Mutable during the active session |
-| Workflow Context | Why the session is operating as New Project Workflow or Existing Project Adoption for the current target | Workflow governance | Mutable only through renewed context resolution |
+| Workflow Context | Why the session is operating as New Project Workflow or Existing Project Adoption for the current target | `KHWAMI_OPERATING_CONTRACT.md` policy applied by Workflow Controller | Mutable only through renewed context resolution |
 | Analysis State | What workflow-specific analysis has been completed and what remains current | Selected workflow | Mutable until superseded by new analysis |
 | Proposal State | The current explicit proposed difference between current state and proposed state | Workflow Controller using selected-workflow analysis output | Mutable until replaced, approved, invalidated, or terminated |
 | Change Detection State | Whether the current proposal is unchanged, executable, or in conflict with current reality | Derived by the controller from proposal, baseline, and current state | Recomputed when relevant inputs change |
-| Permission State | Whether the current proposal has valid approval | Workflow governance | Ephemeral and invalidated by material change or termination |
-| Approved Scope | The exact scope authorized for execution | Workflow governance coordinated by the controller | Immutable once granted, but expires when invalidated or terminated |
+| Permission State | Whether the current proposal has valid approval | `KHWAMI_OPERATING_CONTRACT.md` | Ephemeral and invalidated by material change or termination |
+| Approved Scope | The exact scope authorized for execution | `KHWAMI_OPERATING_CONTRACT.md`, coordinated by Workflow Controller | Immutable once granted, but expires when invalidated or terminated |
 | Execution State | Progress and result of applying approved scope | Execution subsystem | Mutable during execution, historical after completion |
 | Validation State | Result of verifying that actual changes match the approved result | Validation subsystem | Final for a validation run |
 | Terminal Result | How the session ended | Workflow Controller | Immutable once produced |
@@ -244,8 +244,8 @@ through the session:
 | Recommendation | Selected workflow analysis | Proposal formation or review discussion | Derived analysis output, not authorization |
 | Proposal | Workflow Controller from current analysis result | Review, change detection, permission, execution, validation | Current explicit executable candidate |
 | Review Feedback | User through the CLI | Selected workflow analysis and proposal revision | User input |
-| Permission Decision | Workflow governance | Controller | Authoritative approval or rejection record |
-| Approved Scope | Controller and workflow governance | Execution and validation | Authoritative execution boundary |
+| Permission Decision | `KHWAMI_OPERATING_CONTRACT.md` policy applied by Workflow Controller | Controller | Authoritative approval or rejection record |
+| Approved Scope | Controller under `KHWAMI_OPERATING_CONTRACT.md` | Execution and validation | Authoritative execution boundary |
 | Execution Result | Execution subsystem | Validation and final reporting | Execution output |
 | Validation Result | Validation subsystem | Final reporting | Validation output |
 | Terminal Result | Workflow Controller | CLI and user | Final session result |
@@ -541,7 +541,8 @@ Validated Scope
 - **Analyzed Scope** comes from workflow-specific understanding of what the
   objective actually touches.
 - **Proposed Scope** is the explicit scope of the current proposal.
-- **Approved Scope** is the exact scope authorized by workflow governance.
+- **Approved Scope** is the exact scope authorized under
+  `KHWAMI_OPERATING_CONTRACT.md`.
 - **Executed Scope** is the subset of approved scope that execution actually
   attempted or completed.
 - **Validated Scope** is the portion of executed scope that validation actually
@@ -565,7 +566,7 @@ through renewed analysis, revised proposal, change detection, and new
 permission before further execution.
 
 This document defines the traceability requirement. Detailed approved-scope
-policy remains owned by the Operating Contract and workflow governance.
+policy remains owned by `KHWAMI_OPERATING_CONTRACT.md`.
 
 ---
 
@@ -627,9 +628,9 @@ The No-Change Outcome terminates cleanly without permission or execution.
 
 ## Permission Coordination
 
-Permission belongs to shared workflow governance. It is not owned by the CLI,
-the New Project Workflow, Existing Project Adoption, or a presentation layer
-of the controller.
+Permission is defined by `KHWAMI_OPERATING_CONTRACT.md`. It is not owned by
+the CLI, the New Project Workflow, Existing Project Adoption, or a presentation
+layer of the controller.
 
 The unified architecture does not define alternative approval semantics, a
 separate permission parser, or a second approval path.
@@ -637,7 +638,7 @@ separate permission parser, or a second approval path.
 ### Controller role
 
 The controller coordinates when permission is required. It does not decide its
-meaning independently of workflow governance.
+meaning independently of the Operating Contract's governance policy.
 
 The controller must ensure that permission is bound to the immediately
 preceding explicit current proposal and to its exact execution boundary.
@@ -667,8 +668,7 @@ approval:
 - a previous approval from an earlier proposal; or
 - a previous approval from an earlier session.
 
-Detailed permission semantics remain owned by workflow governance and the
-Operating Contract.
+Detailed permission semantics remain owned by the Operating Contract.
 
 ---
 
@@ -828,18 +828,18 @@ owned elsewhere.
 
 | Condition | Controller routing | Primary owner of next decision |
 | --- | --- | --- |
-| Ambiguous context | Remain in Context Resolution until clarification, selection, or safe termination | Workflow governance |
-| Unresolved target boundary | Return to Context Resolution or clarification before workflow analysis continues | Workflow governance |
+| Ambiguous context | Remain in Context Resolution until clarification, selection, or safe termination | Operating Contract policy, coordinated by Workflow Controller |
+| Unresolved target boundary | Return to Context Resolution or clarification before workflow analysis continues | Operating Contract policy, coordinated by Workflow Controller |
 | Missing requirements or insufficient workflow understanding | Return to the selected workflow's analysis or clarification path, or finish blocked/incomplete | Selected workflow |
 | Unresolved review decisions | Revise the proposal, defer the unresolved item, or terminate without execution | Selected workflow and controller |
 | Changed filesystem or repository state | Re-run Change Detection and route to revised analysis/proposal or safe termination as needed | Controller using Operating Contract rules |
 | Conflicting user changes | Stop progression and return to the appropriate workflow mechanism or terminate safely | Controller using Operating Contract rules |
-| Unexpected artifacts or evidence that invalidate the current context | Return to Context Resolution or the affected workflow analysis as appropriate | Controller and workflow governance |
+| Unexpected artifacts or evidence that invalidate the current context | Return to Context Resolution or the affected workflow analysis as appropriate | Controller under Operating Contract policy |
 | Unsupported environment or unavailable tooling | Surface the limitation and return to proposal/review or terminate safely | Selected workflow and Operating Contract |
-| External-operation requirement | Return to proposal/review so the external boundary can be handled under the proper authority | Operating Contract and workflow governance |
-| Permission rejection | Terminate with an analysis-only or rejected-execution result | Workflow governance |
-| Esc or explicit exit | Terminate safely without execution | Workflow governance |
-| EOF or unavailable required interaction | Terminate or remain blocked safely; do not guess | Workflow governance |
+| External-operation requirement | Return to proposal/review so the external boundary can be handled under the proper authority | Operating Contract policy and Workflow Controller |
+| Permission rejection | Terminate with an analysis-only or rejected-execution result | Operating Contract policy, coordinated by Workflow Controller |
+| Esc or explicit exit | Terminate safely without execution | Operating Contract policy, coordinated by Workflow Controller |
+| EOF or unavailable required interaction | Terminate or remain blocked safely; do not guess | Operating Contract policy, coordinated by Workflow Controller |
 | Execution failure or unexpected execution condition | Stop execution and return control to the controller for follow-up analysis/proposal if needed | Execution boundary and Operating Contract |
 | Validation failure | Report the failure; if corrective work is desired, begin a new analysis/proposal/permission cycle | Validation boundary and Operating Contract |
 
@@ -941,7 +941,7 @@ This architecture does not:
 - define command syntax, UI layout, or terminal styling;
 - define classes, interfaces, storage mechanisms, or runtime libraries;
 - implement context resolution logic;
-- redefine workflow-governance policy;
+- redefine shared governance policy owned by the Operating Contract;
 - redefine New Project Workflow policy;
 - redefine Existing Project Adoption policy;
 - redefine Operating Contract safety, permission, execution, or validation

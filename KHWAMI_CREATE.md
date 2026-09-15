@@ -6,10 +6,12 @@ This document defines the KHWAMI CREATE workflow. It is subordinate to
 `KHWAMI_OPERATING_CONTRACT.md` and the public unified workflow architecture in
 `KHWAMI_WORKFLOW_CONTROL.md`.
 
-The Operating Contract, Context Resolution and Workflow Governance, approved
-scope rules, existing-work protections, external-operation boundaries,
-destructive-operation boundaries, and no-change behavior remain authoritative.
-This document defines only the CREATE-specific workflow.
+`KHWAMI_OPERATING_CONTRACT.md` owns shared governance policy, including
+Context Resolution, Permission, Approved Scope, termination, safety rules,
+external-operation boundaries, destructive-operation boundaries, and no-change
+behavior. `KHWAMI_WORKFLOW_CONTROL.md` owns unified workflow
+integration/orchestration. This document defines only the CREATE-specific
+workflow.
 
 ---
 
@@ -148,13 +150,13 @@ Terminal Result
 ```
 
 The New Project Workflow stages are responsible for analysis and proposal
-content. Context Resolution and Workflow Governance remain responsible for
-shared navigation, anti-skip behavior, Permission, Approved Scope coordination,
-and termination. `KHWAMI_WORKFLOW_CONTROL.md` coordinates Change Detection and
-the Execution and Validation handoffs. Destructive, external,
-dependency-related, and other high-risk characteristics remain proposal
-properties and approved-scope constraints; they do not create a new workflow or
-state.
+content. `KHWAMI_OPERATING_CONTRACT.md` remains authoritative for shared
+governance policy, including navigation, anti-skip behavior, Permission,
+Approved Scope, and termination. `KHWAMI_WORKFLOW_CONTROL.md` coordinates
+Change Detection and the Execution and Validation handoffs. Destructive,
+external, dependency-related, and other high-risk characteristics remain
+proposal properties and approved-scope constraints; they do not create a new
+workflow or state.
 
 CREATE analysis is read-only. No project file, configuration, dependency, Git
 state, or external resource may be changed before the shared Permission gate
@@ -677,8 +679,8 @@ proposal.
 
 ## Approval
 
-Approval is governed by the KHWAMI Operating Contract and Context Resolution
-and Workflow Governance, as integrated by `KHWAMI_WORKFLOW_CONTROL.md`.
+Approval is governed by `KHWAMI_OPERATING_CONTRACT.md` and integrated by
+`KHWAMI_WORKFLOW_CONTROL.md`.
 
 Approval may be requested only after:
 
@@ -743,7 +745,8 @@ changes may be made.
 response. It must never be used as an alternative spelling of `n/no` and must
 not be interpreted as approval rejection inside the permission policy. If the
 active Context Resolution interaction exposes the exit action, its behavior is
-governed by Context Resolution and Workflow Governance:
+governed by the shared Context Resolution rules in
+`KHWAMI_OPERATING_CONTRACT.md`:
 
 ```text
 KHWAMI exited.
@@ -1098,26 +1101,24 @@ CREATE must never:
 
 ## Relationship with the Unified Workflow Architecture and Operating Contract
 
-### Context Resolution and Workflow Governance owns
+### Shared Governance Policy (Operating Contract)
 
-Context Resolution and Workflow Governance owns:
+`KHWAMI_OPERATING_CONTRACT.md` owns the shared governance policy used by
+CREATE, including:
 
-- Context Resolution;
+- Context Resolution and target clarification;
 - metadata versus meaningful implementation classification;
 - CREATE, ADOPT, and AMBIGUOUS determination;
-- target-boundary clarification;
 - `[Create]`, `[Adopt]`, and `[Esc]` context interaction;
-- top-level interactive navigation;
-- anti-skip behavior;
-- the distinction between context selection and execution permission;
+- anti-skip behavior and the distinction between Context Selection and
+  Permission;
 - `y/yes` and `n/no` Permission semantics;
-- Approved Scope coordination;
-- No-Change behavior;
-- Context Resolution exit behavior; and
-- session termination and re-analysis rules.
+- Approved Scope policy;
+- No-Change behavior; and
+- session termination and new-lifecycle rules.
 
-The public integration of these responsibilities is defined in
-`KHWAMI_WORKFLOW_CONTROL.md`.
+`KHWAMI_WORKFLOW_CONTROL.md` owns the public integration and orchestration of
+these shared rules. CREATE references them and does not redefine them.
 
 ### The Operating Contract owns
 

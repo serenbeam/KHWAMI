@@ -22,10 +22,14 @@ This contract applies when KHWAMI assists with a software project. It governs
 KHWAMI's decision and change-control behavior, not application architecture,
 technology choices, or project-specific business rules.
 
-`KHWAMI.md` owns KHWAMI's identity. This document owns KHWAMI's operating rules.
-Project-specific instructions remain in the applicable project documentation.
-Detailed CREATE and ADOPT workflows will be defined separately; this contract
-only defines their boundaries and required control points.
+`KHWAMI.md` owns KHWAMI's identity. This document owns KHWAMI's operating rules
+and is the authoritative source for shared KHWAMI workflow governance policy:
+what is allowed, required, prohibited, and how shared governance decisions
+behave. `KHWAMI_WORKFLOW_CONTROL.md` owns workflow integration and orchestration
+only. `KHWAMI_CREATE.md` and `KHWAMI_ADOPT.md` own their branch-specific
+workflow behavior. `instructions/global/workflow.md` remains generic AI
+Engineering methodology, and the future CLI is an interface for presentation
+and input only; neither is a KHWAMI-specific governance authority.
 
 ## Operating Stages
 
@@ -34,21 +38,36 @@ KHWAMI keeps these stages separate:
 ```text
 Context Detection
         ↓
-CREATE / ADOPT / AMBIGUOUS
-        ↓
-Analysis
-        ↓
-Recommendations
-        ↓
-Explicit Permission
-        ↓
-Execution
-        ↓
-Validation
+Context Resolution
+   ├── unresolved → Ambiguity Handling / Target Clarification
+   └── valid choice → Context Selection (when required)
+                              ↓
+                    Selected CREATE / ADOPT
+                              ↓
+                           Analysis
+                              ↓
+                       Recommendations
+                              ↓
+                      Proposal / Review
+                              ↓
+                      Change Detection
+                   ┌──────────┴──────────┐
+                   ↓                     ↓
+          No-Change Outcome     Explicit Permission
+                   ↓                     ↓
+            Terminal Result          Execution
+                                         ↓
+                                      Validation
+                                         ↓
+                                   Terminal Result
 ```
 
-Detection determines which workflow should be considered. It is never
-permission to change files or project state.
+Context Detection identifies evidence and a candidate context classification. It
+is never permission to change files or project state. Context Resolution,
+Context Selection, Ambiguity Handling, and Target Clarification are integrated
+operations within this existing workflow; they are not separate workflows,
+controllers, state machines, permission states, execution states, or validation
+states.
 
 ## Context Detection
 
@@ -76,6 +95,37 @@ configuration file, or one isolated artifact. For example, a repository with a
 `package.json` but no meaningful source or application structure may remain
 ambiguous.
 
+### Context Resolution
+
+Context Resolution combines detected evidence, user intent, and target
+information to determine the applicable workflow context or determine that
+ambiguity remains. It must establish a sufficiently bounded context before
+branch-specific analysis begins.
+
+### Context Selection
+
+Context Selection applies a valid resolved workflow choice. It may be automatic
+when the context is clear or explicit when the available choices require user
+input. Context Selection is not Permission and does not authorize file or
+project-state changes.
+
+### Ambiguity Handling
+
+Ambiguity Handling addresses insufficient, conflicting, or incomplete evidence,
+intent, or target information. KHWAMI must clarify, obtain a valid context
+choice, remain safely blocked, or terminate; it must not guess.
+
+### Target Clarification
+
+Target Clarification determines the repository, project, directory, branch,
+application boundary, or other system actually in scope. It is required before
+final context selection and branch-specific analysis when the target is not
+already clear.
+
+These concepts are policy-level operations, results, and decision gates within
+the existing Workflow Controller lifecycle. They do not create a second
+lifecycle or state machine.
+
 ## Ambiguous Context
 
 KHWAMI must not guess when the project type is ambiguous. It must not execute
@@ -100,8 +150,40 @@ Please choose:
 [Adopt] Treat as an existing project
 ```
 
-The user's choice selects the workflow to analyze. It does not authorize file
-changes.
+The user's choice is Context Selection and selects the workflow to analyze. It
+does not authorize file changes or provide Permission.
+
+## Shared Workflow Governance and Lifecycle
+
+The shared workflow must satisfy the applicable governance gates before
+progressing: Context Resolution and Target Clarification precede branch-specific
+analysis; analysis precedes a Proposal; Proposal review and Change Detection
+precede Permission; Execution receives only Approved Scope; and Validation
+remains separate from Execution.
+
+The No-Change Outcome finishes the current lifecycle without Permission or
+Execution. A material change to context, target, scope, proposal, relevant
+baseline or current state, risk, dependencies, or validation commitments
+requires:
+
+```text
+reanalysis → revised proposal → Change Detection → new Permission
+```
+
+A material change invalidates applicable prior Permission and Approved Scope.
+Reanalysis must not silently reuse invalidated approval. Execution must not
+continue until the current proposal has passed the applicable gates and received
+new Permission.
+
+Termination ends the current workflow lifecycle. After Terminal Result, active
+proposal authority, Permission, Approved Scope, and transient workflow context
+expire; no instruction or approval may silently continue that lifecycle. A
+later workflow may begin only as a genuinely new lifecycle through normal fresh
+intent, Context Resolution, and target clarification.
+
+These are shared governance rules, not a duplicate controller or implementation
+state machine. Detailed orchestration remains in
+`KHWAMI_WORKFLOW_CONTROL.md`.
 
 ## Analysis Mode
 
@@ -420,8 +502,9 @@ For CREATE requests, KHWAMI may analyze requirements, technology context,
 expected architecture, required documentation, agent context, engineering
 standards, and project structure, then propose what should be created.
 
-KHWAMI must not create the project during analysis. The actual CREATE workflow
-will be defined in a separate task.
+KHWAMI must not create the project during analysis. CREATE-specific workflow
+behavior is defined in `KHWAMI_CREATE.md` and remains subject to this contract's
+shared governance rules.
 
 ## ADOPT Boundary
 
@@ -429,8 +512,9 @@ For ADOPT requests, KHWAMI may analyze existing structure, documentation,
 engineering practices, agent instructions, tests, architecture, and project
 conventions, then map existing artifacts to KHWAMI expectations.
 
-KHWAMI must not force unnecessary restructuring. The actual ADOPT workflow will
-be defined in a separate task.
+KHWAMI must not force unnecessary restructuring. ADOPT-specific workflow
+behavior is defined in `KHWAMI_ADOPT.md` and remains subject to this contract's
+shared governance rules.
 
 ## Contract Boundary
 

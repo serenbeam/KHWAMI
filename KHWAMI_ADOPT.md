@@ -9,9 +9,11 @@ This document defines the KHWAMI ADOPT workflow. It is subordinate to:
    `KHWAMI_WORKFLOW_CONTROL.md`; and
 3. `KHWAMI_CREATE.md` where the workflow boundary requires comparison.
 
-Those authorities own the shared Context Resolution, Permission, Approved
-Scope, Execution, Validation, termination, and safety rules. This document
-defines only the Existing Project Adoption analysis and proposal workflow.
+`KHWAMI_OPERATING_CONTRACT.md` owns shared governance policy, including
+Context Resolution, Permission, Approved Scope, Execution, Validation,
+termination, and safety rules. `KHWAMI_WORKFLOW_CONTROL.md` owns unified
+workflow integration/orchestration. This document defines only the Existing
+Project Adoption analysis and proposal workflow.
 
 ADOPT does not implement the KHWAMI CLI, application code, repository changes,
 or a competing state machine.
@@ -171,10 +173,10 @@ Terminal Result
 ```
 
 The Existing Project Adoption responsibilities remain owned by this document.
-Context Resolution and Workflow Governance remain responsible for shared
-navigation, anti-skip behavior, Permission, Approved Scope coordination, and
-termination. `KHWAMI_WORKFLOW_CONTROL.md` coordinates Change Detection and the
-Execution and Validation handoffs.
+`KHWAMI_OPERATING_CONTRACT.md` remains authoritative for shared governance
+policy, including navigation, anti-skip behavior, Permission, Approved Scope,
+and termination. `KHWAMI_WORKFLOW_CONTROL.md` coordinates Change Detection and
+the Execution and Validation handoffs.
 
 Adoption-specific concerns are handled within these responsibilities and the
 shared proposal, permission, execution, validation, and termination mechanisms.
@@ -820,8 +822,8 @@ No changes are required.
 KHWAMI finished.
 ```
 
-No-change behavior is governed by the Operating Contract and Context
-Resolution and Workflow Governance. ADOPT must not:
+No-change behavior is governed by `KHWAMI_OPERATING_CONTRACT.md`. ADOPT must
+not:
 
 - manufacture a change to produce a permission step;
 - create placeholder documentation;
@@ -1107,26 +1109,22 @@ persist.
 
 ## Relationship with the Unified Workflow Architecture and Operating Contract
 
-### Context Resolution and Workflow Governance owns
+### Shared Governance Policy (Operating Contract)
 
-Context Resolution and Workflow Governance owns:
+`KHWAMI_OPERATING_CONTRACT.md` owns the shared governance policy used by ADOPT,
+including:
 
-- Context Resolution;
+- Context Resolution and target clarification;
 - CREATE, ADOPT, and AMBIGUOUS determination;
-- context selection;
-- target clarification;
-- top-level navigation;
-- anti-skip behavior;
-- the separation between context selection and Permission;
+- Context Selection and its separation from Permission;
+- top-level navigation and anti-skip behavior;
 - `y/yes` and `n/no` Permission semantics;
-- Approved Scope coordination;
-- No-Change behavior;
-- Context Resolution exit behavior; and
-- session termination and re-analysis.
+- Approved Scope policy;
+- No-Change behavior; and
+- session termination and new-lifecycle rules.
 
-The public integration of these responsibilities is defined in
-`KHWAMI_WORKFLOW_CONTROL.md`. ADOPT references these responsibilities and does
-not redefine them.
+`KHWAMI_WORKFLOW_CONTROL.md` owns the public integration and orchestration of
+these shared rules. ADOPT references them and does not redefine them.
 
 ### Operating Contract owns
 
@@ -1226,8 +1224,8 @@ selection, automatic adoption, automatic restructuring, or automatic repair.
 12. Scope does not expand silently.
 13. A complete ADOPT analysis precedes the proposal.
 14. The proposal precedes Permission and Execution.
-15. Permission remains owned by Context Resolution and Workflow Governance and
-    the Operating Contract.
+15. Permission remains owned by `KHWAMI_OPERATING_CONTRACT.md` and is
+    coordinated by the Workflow Controller.
 16. `y/yes` approves only the immediately preceding explicit proposal.
 17. Material proposal changes invalidate previous approval.
 18. Destructive, external, dependency-related, security-sensitive,
