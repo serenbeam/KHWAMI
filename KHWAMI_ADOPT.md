@@ -871,9 +871,14 @@ ADOPT execution must not:
 - continue after an unexpected conflict.
 
 If an unexpected artifact, user change, required operation, or scope difference
-is discovered, KHWAMI must stop, preserve the original approved scope, report
-the condition, and use the existing additional-proposal and permission rules
-when further work is necessary.
+is discovered, KHWAMI must stop, preserve the original Approved Scope where it
+remains valid, and report the condition. Required additional or corrective work
+must not be added directly to the current Approved Scope. It must return through
+reanalysis, a revised or new explicit proposal, Change Detection, and new
+Permission. A new Approved Scope must be established from that newly approved
+proposal before the additional or corrective work is executed. If the work
+materially changes the approved proposal, the applicable prior Permission and
+Approved Scope are invalidated under the shared governance rules.
 
 ADOPT must not silently update the proposal while executing it.
 
@@ -906,13 +911,21 @@ Validation must be proportional to the change and project risk.
 Unavailable or unrun checks must be reported as unavailable or not run. They
 must not be reported as successful.
 
-Validation failure must not automatically trigger repair. A repair requires:
+Validation failure must not automatically trigger repair. Corrective work
+requires:
 
 ```text
 new analysis
-→ new proposal
-→ new permission
+→ revised or new proposal
+→ Change Detection
+→ new Permission
+→ new Approved Scope
+→ execution
+→ validation
 ```
+
+The corrective work must remain untouched until the new Permission and Approved
+Scope have been established.
 
 ADOPT may be reported as successful only when the applicable validation has
 established success. Otherwise the final result must be reported as failed,
@@ -975,7 +988,9 @@ If execution fails, KHWAMI must:
 - preserve unrelated work;
 - avoid claiming successful adoption;
 - avoid blindly retrying after the state changes; and
-- require a new analysis and proposal for corrective or additional work.
+- require new analysis, a revised or new proposal, Change Detection, new
+  Permission, and a new Approved Scope for corrective or additional work before
+  execution resumes.
 
 KHWAMI must not perform an unapproved rollback, reset, cleanup, or replacement
 merely because execution failed.

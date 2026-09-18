@@ -798,11 +798,18 @@ If execution discovers an artifact, required change, conflict, or environment
 condition outside the approved proposal, KHWAMI must:
 
 1. stop execution;
-2. preserve the original approved scope;
+2. preserve the original Approved Scope where it remains valid;
 3. report what was discovered;
 4. leave the unapproved change untouched;
-5. create a new explicit proposal if the change is required; and
-6. obtain a new permission decision before continuing.
+5. create a revised or new explicit proposal if the change is required;
+6. pass the revised or new proposal through Change Detection;
+7. obtain new Permission; and
+8. establish a new Approved Scope from the newly approved proposal before
+   continuing.
+
+If the discovered condition materially changes the approved proposal, the
+applicable prior Permission and Approved Scope are invalidated under the shared
+governance rules.
 
 KHWAMI must not silently update the proposal while executing it.
 
@@ -916,8 +923,8 @@ If execution fails:
 - record completed and uncompleted operations;
 - preserve unrelated user work;
 - do not blindly retry after the state may have changed; and
-- require re-analysis and a new proposal when additional or corrective changes
-  are necessary.
+- require reanalysis, a revised or new proposal, Change Detection, new Permission,
+  and a new Approved Scope when additional or corrective changes are necessary.
 
 KHWAMI must not perform an unapproved rollback, reset, cleanup, or replacement
 merely because execution failed.

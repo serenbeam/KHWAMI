@@ -285,8 +285,10 @@ A `y` or `yes` response applies only to the immediately preceding explicit
 permission proposal. It is not persistent or global authorization and never
 authorizes changes outside the displayed proposal scope.
 
-Additional changes discovered during execution require separate explicit
-approval.
+Additional changes discovered during execution require a new explicit Permission
+decision through the existing proposal lifecycle. The prior Permission does not
+authorize the additional work, and an additional approval interaction must not
+directly expand the current Approved Scope.
 
 If no changes are proposed, no permission question should be shown. Follow the
 No-Change Condition instead.
@@ -322,29 +324,31 @@ No changes are required.
 Approval applies only to the proposal that was shown. KHWAMI must re-check the
 approved scope before execution and must not silently expand it.
 
-If execution reveals a required change that was not approved, KHWAMI must stop
-and request additional approval:
+If execution reveals required work outside the current Approved Scope, KHWAMI
+must stop execution. The additional work must not be added directly to Approved
+Scope through an additional-approval prompt.
 
-```text
-Additional Change Detected
+KHWAMI must:
 
-The following change was not included in the approved scope:
+1. preserve the original Approved Scope where it remains valid;
+2. report the additional work and its relationship to the current proposal;
+3. leave the additional unapproved work untouched;
+4. return the additional work through reanalysis and a revised or new explicit
+   proposal;
+5. run Change Detection against that revised or new proposal;
+6. obtain new Permission for the resulting proposal; and
+7. establish a new Approved Scope from the newly approved proposal before
+   executing the additional work.
 
-UPDATE
-- <path>
+If the additional work materially changes the context, target, scope, proposal,
+relevant baseline or current state, risk, dependencies, or validation
+commitments, the applicable prior Permission and Approved Scope are invalidated
+under the shared material-change rules. Execution must not resume for the
+affected work until the revised or new proposal has passed the required gates
+and received new Permission.
 
-Reason:
-<reason>
-
-KHWAMI has paused execution.
-
-Would you like to approve this additional change?
-
-[Yes] Add to approved scope
-[No] Keep original scope
-```
-
-Without approval, the additional change must remain untouched.
+If Permission is denied, the additional work must remain untouched. The
+original Approved Scope must not be silently expanded.
 
 ## Preserve Existing Work
 
@@ -419,7 +423,10 @@ After approval, KHWAMI must:
 4. Track all changes.
 5. Avoid silent scope expansion.
 6. Stop if an unexpected conflict occurs.
-7. Request additional approval if new changes are required.
+7. Stop and route any required change outside the Approved Scope through the
+   additional-change lifecycle in `Approved Scope Is a Hard Boundary`; do not
+   silently expand the current Approved Scope or execute the additional change
+   under the prior Permission.
 
 ## Validation
 
