@@ -30,6 +30,33 @@ It excludes personal engineering preferences, routine content choices, individua
 | Use a documented CLI toolset for focused repository work. | `WORKSPACE_STATE.md` lists installed tools and configured Git/RTK integration; `instructions/global/tool-selection.md` and `search-strategy.md` assign tool responsibilities. | Improve repository exploration efficiency, terminal readability, and context use. | Tool guidance is maintained in `instructions/global/`; individual repositories may define additional requirements. |
 | Evaluate additional tools before adoption. | `instructions/global/tool-selection.md` defines the required evidence, compatibility, cost, workflow-benefit, and context-impact assessment. | Avoid adding tooling that does not solve a confirmed workflow gap. | Material adoption, rejection, or replacement decisions are recorded here; no new tool was adopted in Phase 5. |
 
+#### Option C — Architecture Baseline + Phase 6.5 Project Milestone
+
+The project selected Option C — Architecture Baseline + Phase 6.5 Project
+Milestone. These are two distinct, non-equivalent meanings.
+
+**Architecture Baseline** is a non-restrictive documentation/status term limited
+to the F-01-supported findings:
+
+- no residual governance findings;
+- no architecture impact;
+- no change required; and
+- `FREEZE CANDIDATE — NO GOVERNANCE FINDINGS`.
+
+This Architecture Baseline is not the pre-approval baseline used by the KHWAMI
+workflow Change Detection process. F-02 and F-03 provide project-history or
+milestone context only and do not enlarge the Architecture Baseline.
+
+**Phase 6.5 Project Milestone** is a project-progress and documentation-status
+milestone only. Phase 6 remains deferred, and Phase 6.5 does not activate
+Phase 6.
+
+Neither concept declares Architecture Frozen or creates architecture,
+contract, implementation, dependency, repository-structure, documentation, or
+future-decision immutability. Neither creates a Candidate → Frozen transition,
+freeze authority, exception/unfreeze mechanism, or new approval path. Existing
+KHWAMI governance remains unchanged.
+
 ### Decision Evidence and Unknowns
 
 | Topic | Confirmed information | Unknown or inferred information |

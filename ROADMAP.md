@@ -3,6 +3,7 @@
 > Last Updated: 2026-08-21
 > Version: 3.2
 > Status: Phase 5 complete
+> Documentation Milestone Status: Option C selected — documentation/status only; Phase 6 remains deferred
 
 ---
 
@@ -347,6 +348,26 @@ condition is satisfied.
 
 ---
 
+## Phase 6.5 Project Milestone — Documentation Status Only
+
+Status
+
+Option C selected — documentation/status milestone only
+
+Meaning
+
+Phase 6.5 records the selected Architecture Baseline + Phase 6.5 Project
+Milestone decision. Architecture Baseline is a non-restrictive documentation/
+status term limited to the F-01-supported findings and is not the pre-approval
+baseline used by workflow Change Detection. Phase 6 remains deferred, and this
+milestone does not activate Phase 6.
+
+Architecture Frozen is not declared. This milestone does not create a new
+capability phase, governance phase, approval path, freeze authority,
+Candidate → Frozen transition, or exception/unfreeze mechanism.
+
+---
+
 # Milestones
 
 | Milestone | Status |
@@ -356,6 +377,7 @@ condition is satisfied.
 | Prompt Library | ✅ |
 | Repository Intelligence | ✅ |
 | KHWAMI Optimization | ✅ |
+| Architecture Baseline + Phase 6.5 Project Milestone | Documentation/status only; Phase 6 remains deferred |
 | Advanced AI Engineering | ⬜ |
 
 ---

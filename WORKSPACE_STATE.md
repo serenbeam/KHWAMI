@@ -15,6 +15,12 @@ Status
 
 Phase 5 capability work complete; Phase 6 waiting for evidence
 
+Documentation Milestone Status
+
+Option C — Architecture Baseline + Phase 6.5 Project Milestone selected;
+documentation/status only; Phase 6 remains deferred; Architecture Frozen not
+declared.
+
 ---
 
 # Current Objective
@@ -206,6 +212,10 @@ Current priorities
 - AI context optimization
 - Documentation consistency
 - Token-efficient engineering workflow
+- Option C — Architecture Baseline + Phase 6.5 Project Milestone selected for documentation
+- Architecture Baseline is non-restrictive and limited to the F-01-supported findings.
+- Phase 6.5 is a project-progress/documentation-status milestone only; Phase 6 remains deferred.
+- Architecture Frozen is not declared, and existing KHWAMI governance remains unchanged.
 
 Current non-priorities
 
@@ -262,6 +272,22 @@ Closure note
 The current Phase 5 outputs contain the implemented guidance changes. Some task
 outcomes remain PARTIAL because completion was not independently measured or
 recorded; no specific additional tool was evaluated or adopted.
+
+## Selected Documentation Milestone
+
+Phase 6.5 — Architecture Baseline + Project Milestone
+
+Status
+
+Selected documentation/status milestone only; Phase 6 remains deferred and
+Architecture Frozen is not declared.
+
+Boundary
+
+Architecture Baseline is non-restrictive and limited to the F-01-supported
+findings. This milestone does not activate Phase 6 or create a new governance
+phase, approval path, freeze authority, Candidate → Frozen transition, or
+exception/unfreeze mechanism.
 
 ---
 
