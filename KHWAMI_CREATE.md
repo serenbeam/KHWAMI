@@ -866,8 +866,24 @@ must be reported as not run or unavailable, not reported as successful.
 - Git and filesystem changes remain within approved scope; and
 - no unrelated user changes were overwritten.
 
-Validation must not repair a failure automatically. A repair is a new change
-that requires analysis, proposal, and permission.
+Validation must not repair a failure automatically. Corrective work is a new
+change and must remain untouched until it completes the shared corrective-work
+lifecycle:
+
+```text
+new analysis
+→ revised or new proposal
+→ Change Detection
+→ new Permission
+→ new Approved Scope
+→ execution
+→ validation
+```
+
+Execution must not begin before new Permission and new Approved Scope are
+established. Corrective execution is limited to the newly established Approved
+Scope and must not silently expand that scope. If Permission is denied, the
+corrective work must remain untouched.
 
 ### Validation result
 
@@ -932,8 +948,22 @@ merely because execution failed.
 ### Validation failure
 
 If validation fails, KHWAMI must report the failure and the affected checks.
-It must not claim success or silently perform corrective changes. A correction
-requires a new analysis and proposal.
+It must not claim success or silently perform corrective changes. Corrective
+work must follow the shared corrective-work lifecycle:
+
+```text
+new analysis
+→ revised or new proposal
+→ Change Detection
+→ new Permission
+→ new Approved Scope
+→ execution
+→ validation
+```
+
+Corrective work must remain untouched until the new Permission and Approved
+Scope have been established. If Permission is denied, the corrective work must
+remain untouched.
 
 ### Unsupported environment
 
