@@ -48,8 +48,10 @@ workflow Change Detection process. F-02 and F-03 provide project-history or
 milestone context only and do not enlarge the Architecture Baseline.
 
 **Phase 6.5 Project Milestone** is a project-progress and documentation-status
-milestone only. Phase 6 remains deferred, and Phase 6.5 does not activate
-Phase 6.
+milestone only. Phase 6 advanced capability activation remains inactive/deferred.
+This is distinct from Phase 6 project/milestone closure, which records completion
+of the project-level analysis and status work. Phase 6.5 does not activate the
+Phase 6 capability.
 
 Neither concept declares Architecture Frozen or creates architecture,
 contract, implementation, dependency, repository-structure, documentation, or

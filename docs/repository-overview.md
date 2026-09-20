@@ -6,7 +6,7 @@ Provide a high-level index of KHWAMI so AI assistants can locate its reusable gu
 
 ## Context
 
-This repository contains KHWAMI's documentation-first resources for standardizing AI-assisted software engineering across projects. `ROADMAP.md` and `WORKSPACE_STATE.md` record Phases 1-5 as complete, including KHWAMI Optimization.
+This repository contains KHWAMI's documentation-first resources for standardizing AI-assisted software engineering across projects. `ROADMAP.md` and `WORKSPACE_STATE.md` record Phase 6 project/milestone closure, while Phase 5 remains the latest activated capability and Phase 7 is next but not started.
 
 KHWAMI separates reusable engineering standards, operational instructions, task prompts, and repository knowledge. This overview describes KHWAMI itself; detailed guidance remains in its authoritative documents.
 
@@ -24,8 +24,10 @@ It excludes detailed architecture, feature mapping, decisions, task procedures, 
 | --- | --- |
 | Repository type | KHWAMI documentation repository and reusable engineering asset library. |
 | Primary objective | Standardize AI-assisted engineering practices, reusable prompts, repository guidance, and repository intelligence. |
-| Latest completed milestone | KHWAMI Optimization. |
-| Latest completed phase | Phase 5 - KHWAMI Optimization. |
+| Latest completed project/milestone | Phase 6 — Project/Milestone Closure. |
+| Latest activated capability | Phase 5 — KHWAMI Optimization. |
+| Phase 6 advanced capability | Inactive / deferred. |
+| Next phase | Phase 7 — Repository Structure Audit (not started). |
 
 ### Structure
 
@@ -88,4 +90,6 @@ Revise or remove claims when their source documents no longer support them. Do n
 
 - The absence of application tooling is a confirmed observation from the current repository root; revise this statement if package, build, test, runtime, or deployment configuration is added.
 - The repository instruction template is `instructions/repository/copilot_instructions-template.md`.
-- Phase 5 — KHWAMI Optimization is complete. Phase 4's four core documents remain `repository-overview.md`, `architecture.md`, `feature-map.md`, and `decisions.md`.
+- Phase 6 project/milestone work is complete; its advanced capability remains inactive/deferred.
+- Phase 5 — KHWAMI Optimization remains the latest activated capability. Phase 4's four core documents remain `repository-overview.md`, `architecture.md`, `feature-map.md`, and `decisions.md`.
+- Phase 7 — Repository Structure Audit is next and has not started.

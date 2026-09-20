@@ -2,8 +2,9 @@
 
 > Last Updated: 2026-08-21
 > Version: 3.2
-> Status: Phase 5 complete
-> Documentation Milestone Status: Option C selected — documentation/status only; Phase 6 remains deferred
+> Status: Phase 6 project/milestone work complete; Phase 7 next / not started
+> Capability Status: Phase 6 advanced capability inactive / deferred
+> Documentation Milestone Status: Option C selected — documentation/status only; Architecture Baseline recorded; Architecture Frozen not declared
 
 ---
 
@@ -235,17 +236,21 @@ Do not repeat completed phases.
 
 # Latest Completed Phase
 
-## Phase 5 — KHWAMI Optimization
+## Phase 6 — Project/Milestone Closure
 
 Status
 
-Completed — capability work present; closure evidence remains partial for some tasks
+Complete — project/milestone work; Phase 6 advanced capability activation remains
+inactive/deferred
+
+Latest Activated Capability
+
+Phase 5 — KHWAMI Optimization
 
 Objective
 
-Improve existing AI instructions, repository guidance, context usage, repository
-understanding, token efficiency, documentation maintenance, and tooling
-evaluation without repeating earlier phases.
+Record the completed Phase 6 project/milestone closure without activating any
+advanced Phase 6 capability or changing the existing governance model.
 
 ---
 
@@ -313,7 +318,12 @@ has been evaluated or adopted.
 
 Status
 
-Deferred / Waiting for Evidence
+Project/milestone work complete
+
+Capability Activation
+
+Inactive / Deferred — no confirmed recurring workflow gap exists; no advanced
+capability is approved, evaluated, or adopted.
 
 Goal
 
@@ -359,12 +369,70 @@ Meaning
 Phase 6.5 records the selected Architecture Baseline + Phase 6.5 Project
 Milestone decision. Architecture Baseline is a non-restrictive documentation/
 status term limited to the F-01-supported findings and is not the pre-approval
-baseline used by workflow Change Detection. Phase 6 remains deferred, and this
-milestone does not activate Phase 6.
+baseline used by workflow Change Detection. Phase 6 advanced capability
+activation remains inactive/deferred. This milestone does not activate the
+Phase 6 capability and is distinct from the completed Phase 6 project/milestone
+closure.
 
 Architecture Frozen is not declared. This milestone does not create a new
 capability phase, governance phase, approval path, freeze authority,
 Candidate → Frozen transition, or exception/unfreeze mechanism.
+
+---
+
+## Phase 7 — Repository Structure Audit
+
+Status
+
+Next / Not Started
+
+Boundary
+
+Phase 7 begins from the recorded Architecture Baseline, Option C
+documentation/status, and existing responsibility model. This section records
+scope only; Phase 7 has not started.
+
+### 7.1 — Repository Structure Audit
+
+Status
+
+Not Started — analysis-only
+
+Scope
+
+- Review `agents/`, `docs/`, `instructions/`, `prompts/`, `KHWAMI_*.md`,
+  `ROADMAP.md`, and `WORKSPACE_STATE.md`.
+- Determine whether documented responsibilities justify the current structure.
+- Identify duplication, repeated instructions, authority boundaries, and
+  semantic-ownership risks.
+
+### 7.2 — Structural Refactoring
+
+Status
+
+Conditional / Not Started
+
+Boundary
+
+Only possible if 7.1 identifies a specific, evidence-supported structural
+problem that cannot be resolved through clarification or documentation
+maintenance and a separate proposal is approved.
+
+### 7.3 — Structure Verification
+
+Status
+
+Conditional / Not Started
+
+Boundary
+
+Only after a separately approved structural change. No verification is
+performed by this transition.
+
+Phase 7 must not repeat F-01, F-02, F-03, Architecture Freeze Status Analysis,
+Architecture Freeze Decision Analysis, or the Option C decision/documentation.
+It does not declare Architecture Frozen or activate any deferred Phase 6
+capability.
 
 ---
 
@@ -377,8 +445,10 @@ Candidate → Frozen transition, or exception/unfreeze mechanism.
 | Prompt Library | ✅ |
 | Repository Intelligence | ✅ |
 | KHWAMI Optimization | ✅ |
-| Architecture Baseline + Phase 6.5 Project Milestone | Documentation/status only; Phase 6 remains deferred |
-| Advanced AI Engineering | ⬜ |
+| Architecture Baseline + Phase 6.5 Project Milestone | Recorded; documentation/status only; Phase 6 capability remains inactive/deferred |
+| Phase 6 Project/Milestone Closure | ✅ |
+| Advanced AI Engineering | Inactive / deferred — activation condition not satisfied |
+| Phase 7 — Repository Structure Audit | Next / Not Started |
 
 ---
 
@@ -427,9 +497,17 @@ Phase 5
 
 ██████████ 100%
 
-Phase 6
+Phase 6 project/milestone work
 
-□□□□□□□□□□ 0%
+██████████ 100%
+
+Phase 6 advanced capability activation
+
+INACTIVE / DEFERRED
+
+Phase 7
+
+□□□□□□□□□□ 0% — Not Started
 ```
 
 ---
@@ -438,24 +516,29 @@ Phase 6
 
 Phase status
 
-**Phase 5 — KHWAMI Optimization is complete.**
+**Phase 6 project/milestone work is complete. Phase 7 — Repository Structure
+Audit is next and not started.**
 
 Assume:
 
-- Phase 1 is complete.
-- Phase 2 is complete.
-- Phase 3 is complete.
-- Phase 4 is complete.
-- Phase 5 is complete.
+- Phases 1–5 capability work is complete with documented closure limitations.
+- Phase 6 project/milestone work is complete.
+- Phase 6 advanced capability activation remains inactive/deferred.
+- No confirmed recurring workflow gap exists.
+- Phase 7 is scoped but has not started.
 - All workflow documentation already exists.
 
 Current state
 
-The Phase 5 capability work is complete with documented closure limitations. Phase
-6 is separately scoped but remains deferred: no confirmed recurring workflow gap
-exists, no advanced capability is approved, and deferred candidates are not
-implementation tasks. Do not begin Phase 6 evaluation or implementation until
-the activation condition is satisfied.
+The Phase 6 project/milestone closure is recorded without activating any
+advanced capability. The Architecture Baseline is recorded, Architecture Frozen
+is not declared, and existing KHWAMI governance remains unchanged. Phase 7 is
+next and not started; do not execute its audit, refactoring, or verification
+subtasks merely because their scope is documented.
+
+Do not repeat F-01, F-02, F-03, Architecture Freeze analysis, or Option C work.
+Do not activate or evaluate a deferred Phase 6 capability without the evidence
+and authorization required by the activation condition.
 
 Do not restart the roadmap.
 
