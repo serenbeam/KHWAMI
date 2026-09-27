@@ -1,7 +1,7 @@
 # KHWAMI State
 
-> Last Updated: 2026-08-21
-> Version: 3.2
+> Last Updated: 2026-09-27
+> Version: 3.4
 
 ---
 
@@ -9,24 +9,28 @@
 
 Current Phase
 
-Phase 7 — Repository Structure Audit
+Phase 8 — Candidate 1 and Candidate 2 Workflow Validation
 
-Phase 7 Status
+Phase 8 Status
 
-COMPLETE — 7.1 complete; 7.2 not triggered / not required; 7.3 complete / pass
+COMPLETE — final evidence assessment sufficient; repeatability established;
+Phase 9 decision gate reached; Phase 9 not started
 
 Status
 
-Phase 7 repository structure audit complete; repository structure is adequate;
-semantic ownership is preserved; no duplicate governance authority was
-identified; no structural refactoring was required; documentation maintenance
-remains possible / non-structural; CLI implementation is not present
+Phase 8 Candidate 1 and Candidate 2 workflow validation complete; Candidate 1
+application task and Candidate 2 comparable repeat-validation task passed;
+workflow effectiveness is positive for both candidates; repeatability is
+established through Candidate 2; usability is positive; functional testing
+passed; existing changes were preserved; the remaining workflow-fidelity finding
+concerns initial ADOPT handling and cross-repository context; CLI implementation
+is not present
 
 Phase 6 Capability Status
 
 Phase 6 project/milestone work complete; advanced capability activation remains
-inactive / deferred; no advanced Phase 6 capability was approved, evaluated, or
-adopted
+inactive / deferred; no deferred Phase 6 advanced capability was approved,
+evaluated, or adopted
 
 Documentation Milestone Status
 
@@ -38,14 +42,17 @@ deferred; Architecture Frozen not declared.
 
 # Current Objective
 
-Record the completed Phase 7 Repository Structure Audit while preserving the
-inactive / deferred Phase 6 capability status, Option C boundary, and existing
-KHWAMI governance.
+Record the completed Phase 8 Candidate 1 and Candidate 2 workflow validation
+and final evidence assessment while preserving the inactive / deferred Phase 6
+capability status, Option C boundary, existing KHWAMI governance, and the Phase 9
+boundary.
 
-The Phase 7 audit and final structural/semantic verification are complete. No
-structural refactoring was triggered or required. The existing documentation
-remains reusable across projects, and documentation maintenance remains possible
-as a non-structural activity. Phase 8 has not started.
+Phase 8 evidence is sufficient: Candidate 1 and Candidate 2 tasks passed,
+workflow effectiveness is positive for both candidates, repeatability is
+established through Candidate 2, usability is positive, and functional testing passed. The remaining
+workflow-fidelity finding concerns initial ADOPT handling and cross-repository
+context. The Phase 9 decision gate is
+reached, but Phase 9 has not started.
 
 ---
 
@@ -203,22 +210,28 @@ Completed
 
 # Current Focus
 
-Phase 7 — Repository Structure Audit
+Phase 8 — Candidate 1 and Candidate 2 Workflow Validation
 
 Status
 
 COMPLETE
 
-The Repository Structure Audit and final structural/semantic verification are
-complete. 7.2 was not triggered and was not required.
+The Candidate 1 application task, Candidate 2 comparable repeat-validation task,
+and final evidence assessment are complete. Repeatability and usability evidence
+are established through Candidate 2. Phase 9 has not started.
 
 Results
 
-- Repository Structure: ADEQUATE
-- Semantic Ownership: PRESERVED
-- Duplicate Authority: NOT IDENTIFIED
-- Structural Refactoring: NOT REQUIRED
-- Documentation Maintenance: POSSIBLE / NON-STRUCTURAL
+- Candidate 1 application task: PASS
+- Candidate 2 comparable repeat-validation task: PASS
+- Candidate 1 workflow effectiveness: POSITIVE
+- Candidate 2 workflow effectiveness: POSITIVE
+- Repeatability: ESTABLISHED through Candidate 2
+- Usability: POSITIVE
+- Functional testing: PASS
+- Existing changes: PRESERVED
+- Workflow-fidelity finding: INITIAL ADOPT HANDLING REQUIRED CLARIFICATION
+- Cross-repository context friction: LOW TO MODERATE
 - CLI Implementation: NOT PRESENT
 
 Current priorities
@@ -226,9 +239,11 @@ Current priorities
 - Preserve the inactive/deferred Phase 6 capability status.
 - Preserve Option C as the Architecture Baseline + Phase 6.5 Project Milestone.
 - Keep Architecture Frozen not declared.
+- Preserve the Phase 8 workflow-fidelity finding for future improvement.
 - Keep repository documentation reusable across projects.
 - Preserve documentation consistency and token-efficient AI collaboration.
-- Do not start Phase 8 through this documentation record.
+- Keep the Phase 9 decision gate reached but Phase 9 not started.
+- Do not start Phase 9 through this documentation record.
 
 ---
 
@@ -244,7 +259,11 @@ Current priorities
 - No structural refactoring required
 - Documentation maintenance possible / non-structural
 - CLI implementation not present
-- Phase 8 not started
+- Phase 8 Candidate 1 and Candidate 2 workflow validation complete
+- Candidate 1 and Candidate 2 final evidence assessment sufficient
+- Candidate 2 repeatability and usability evidence established
+- Workflow-fidelity finding retained for future improvement
+- Phase 9 decision gate reached; Phase 9 not started
 - Reusable repository documentation
 - AI context optimization
 - Documentation consistency
@@ -286,10 +305,13 @@ When continuing KHWAMI:
 - Assume Phases 1–5 capability work and Phase 6 project/milestone work are complete.
 - Treat Phase 7 Repository Structure Audit as complete.
 - Treat 7.2 as not triggered / not required and 7.3 as complete / pass.
+- Treat Phase 8 Candidate 1 and Candidate 2 workflow validation as complete.
+- Preserve the Phase 8 final evidence assessment, Candidate 2 repeatability result,
+  usability observation, and workflow-fidelity finding.
 - Preserve the adequate repository structure and semantic ownership conclusions.
 - Do not repeat F-01, F-02, F-03, Architecture Freeze analysis, or Option C work.
 - Do not activate or evaluate the deferred Phase 6 capability without a confirmed recurring workflow gap, separate scoping, and proper authorization.
-- Do not start Phase 8 through this state record.
+- Do not start Phase 9 through this state record. CLI design and implementation require separate scoping and permission.
 - Build on existing KHWAMI guidance.
 - Maintain a single source of truth.
 - Prefer reusable documentation over project-specific documentation.
@@ -300,25 +322,41 @@ When continuing KHWAMI:
 
 # Current Milestone
 
-Phase 7 — Repository Structure Audit
+Phase 8 — Candidate 1 and Candidate 2 Workflow Validation
 
 Status
 
-COMPLETE — final structural and semantic verification passed; structural
-refactoring was not triggered / not required
+COMPLETE — final evidence assessment sufficient; repeatability and usability
+evidence established; Phase 9 decision gate reached; Phase 9 not started
 
 Objective
 
-Record the completed Phase 7 Repository Structure Audit without changing
-existing KHWAMI governance, reopening Phase 6, or starting Phase 8.
+Record the completed Phase 8 Candidate 1 and Candidate 2 workflow validation
+without activating a deferred Phase 6 capability, changing existing KHWAMI
+governance, or starting Phase 9.
 
 Completion note
 
-The Phase 7.1 audit and Phase 7.3 final verification are complete. Repository
-structure is adequate, semantic ownership is preserved, duplicate authority was
-not identified, and no structural refactoring was required. Documentation
-maintenance remains possible / non-structural, and CLI implementation is not
-present.
+The Candidate 1 application task and Candidate 2 comparable AIGrammarChecker
+repeat-validation task passed. Candidate 2 provided the comparable validation
+used to establish repeatability. Repository analysis, architecture and
+constraint analysis, requirement reconciliation, proposal, explicit Permission,
+controlled implementation, preservation of existing changes, targeted
+validation, and functional testing were completed. The original functional testing passed 3 of 3
+cases, and the repeat-validation functional testing passed. Workflow clarity was
+clear overall; some additional clarification was needed when the intended ADOPT
+behavior was not followed initially. Friction was low to moderate because
+additional context was needed for work performed in the separate
+AIGrammarChecker repository. Practical usefulness was positive, and willingness
+to use KHWAMI again was confirmed. This remains a workflow-fidelity finding for
+future improvement. CLI implementation is not present.
+
+Previous Milestone — Phase 7 — Repository Structure Audit
+
+Status
+
+Complete — repository structure adequate; semantic ownership preserved; no
+structural refactoring required
 
 Previous Milestone — Phase 6 Project/Milestone Closure
 
@@ -330,8 +368,8 @@ inactive/deferred
 Closure note
 
 The Phase 6 project/milestone analysis and Option C validation are complete. No
-confirmed recurring workflow gap exists, no advanced capability was approved,
-evaluated, or adopted, and Architecture Frozen was not declared.
+deferred Phase 6 advanced capability was approved, activated, or adopted, and
+Architecture Frozen was not declared.
 
 ## Selected Documentation Milestone
 

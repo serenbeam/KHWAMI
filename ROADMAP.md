@@ -1,8 +1,8 @@
 # KHWAMI Roadmap
 
-> Last Updated: 2026-08-21
-> Version: 3.2
-> Status: Phase 7 repository structure audit complete; Phase 8 not started
+> Last Updated: 2026-09-27
+> Version: 3.4
+> Status: Phase 8 Candidate 1 and Candidate 2 workflow validation complete; Phase 9 decision gate reached; Phase 9 not started
 > Capability Status: Phase 6 advanced capability inactive / deferred
 > Documentation Milestone Status: Option C selected — documentation/status only; Architecture Baseline recorded; Architecture Frozen not declared
 
@@ -277,7 +277,8 @@ Outcome
 - Option C: PRESERVED
 - Architecture Frozen: NOT DECLARED
 - Phase 6 advanced capability: INACTIVE / DEFERRED
-- Phase 8: NOT STARTED
+- Phase 8: COMPLETE — final evidence assessment sufficient
+- Phase 9 decision gate: REACHED; Phase 9 not started
 
 ---
 
@@ -349,8 +350,9 @@ Project/milestone work complete
 
 Capability Activation
 
-Inactive / Deferred — no confirmed recurring workflow gap exists; no advanced
-capability is approved, evaluated, or adopted.
+Inactive / Deferred — no deferred Phase 6 advanced capability has been
+activated. Phase 8 Candidate 1 and Candidate 2 validation is separately scoped evidence
+work and does not activate Phase 6 advanced capability.
 
 Goal
 
@@ -359,8 +361,10 @@ problem is not adequately handled by the Phase 1–5 baseline.
 
 Current state
 
-No confirmed recurring workflow gap currently exists. No advanced capability is
-approved for adoption, and no specific advanced tool has been evaluated.
+No confirmed recurring workflow gap currently exists. No deferred Phase 6
+advanced capability is approved for adoption or activated. Phase 8 Candidate 1
+and Candidate 2 validation was separately scoped and is not an advanced Phase 6
+capability adoption.
 
 Deferred candidates
 
@@ -460,12 +464,83 @@ required.
 
 Phase 7 preserves Option C as the Architecture Baseline + Phase 6.5 Project
 Milestone. Architecture Frozen is not declared, and Phase 6 advanced capability
-activation remains inactive / deferred. Phase 8 has not started.
+activation remains inactive / deferred. Phase 8 was subsequently completed under
+separate scope; the Phase 9 decision gate is reached, but Phase 9 has not
+started.
 
 Phase 7 must not repeat F-01, F-02, F-03, Architecture Freeze Status Analysis,
 Architecture Freeze Decision Analysis, or the Option C decision/documentation.
 It does not declare Architecture Frozen or activate any deferred Phase 6
 capability.
+
+---
+
+## Phase 8 — Candidate 1 and Candidate 2 Workflow Validation
+
+Status
+
+COMPLETE — final evidence assessment sufficient
+
+Evidence Assessment
+
+- Candidate 1 application task: PASS
+- Candidate 2 comparable repeat-validation task: PASS
+- Candidate 1 workflow effectiveness: POSITIVE
+- Candidate 2 workflow effectiveness: POSITIVE
+- Repeatability: ESTABLISHED through Candidate 2
+- Usability: POSITIVE
+- Functional testing: PASS
+- Repository analysis: COMPLETE
+- Architecture and constraint analysis: COMPLETE
+- Requirement reconciliation: COMPLETE
+- Proposal and explicit Permission: COMPLETE
+- Controlled implementation: COMPLETE
+- Preservation of existing changes: PASS
+- Targeted validation: PASS
+- Candidate 1 initial functional testing: 3 of 3 cases passed
+- Candidate 2 repeat-validation functional testing: PASS
+- Developer usability observation: COMPLETE / POSITIVE
+
+Developer Usability Observation
+
+- Workflow clarity: CLEAR OVERALL — the analysis, proposal, Permission, execution,
+  and validation flow was understandable.
+- Unnecessary interaction: SOME — additional clarification was needed when the
+  intended ADOPT behavior was not followed initially.
+- Friction: LOW TO MODERATE — additional context was needed for work performed
+  in the separate AIGrammarChecker repository.
+- Practical usefulness: POSITIVE — KHWAMI structured the task, bounded scope,
+  protected existing changes, and controlled implementation.
+- Willingness to reuse: YES.
+
+Bounded Conclusion
+
+KHWAMI provides meaningful and repeatable value for bounded application
+development tasks, based on the combined Candidate 1 and Candidate 2
+evidence.
+
+Workflow-Fidelity Finding
+
+- Initial ADOPT behavior did not fully follow the intended workflow and required
+  clarification.
+- Additional context was required for work performed in the separate
+  AIGrammarChecker repository.
+- Observed friction was LOW TO MODERATE.
+- This is an improvement area for cross-repository context handling and workflow
+  fidelity.
+- The finding does not invalidate Candidate 1, Candidate 2, or the Phase 8
+  result.
+
+Phase 8 Boundary
+
+Phase 8 validates Candidate 1 and Candidate 2 through bounded application
+tasks. It does not activate a deferred Phase 6 capability, declare Architecture
+Frozen, start Phase 9, approve CLI design, or authorize CLI implementation.
+
+Phase 9 Decision Gate
+
+REACHED — Phase 9 is eligible for separate scoping and decision; Phase 9 has not
+started. CLI design and implementation remain unapproved and are not present.
 
 ---
 
@@ -482,6 +557,8 @@ capability.
 | Phase 6 Project/Milestone Closure | ✅ |
 | Advanced AI Engineering | Inactive / deferred — activation condition not satisfied |
 | Phase 7 — Repository Structure Audit | ✅ Complete |
+| Phase 8 — Candidate 1 and Candidate 2 Workflow Validation | ✅ Complete — final evidence assessment sufficient |
+| Phase 9 — CLI Decision Gate | Reached; not started |
 
 ---
 
@@ -541,6 +618,14 @@ INACTIVE / DEFERRED
 Phase 7
 
 ██████████ 100% — Complete
+
+Phase 8 — Candidate 1 and Candidate 2 workflow validation
+
+██████████ 100% — Complete
+
+Phase 9 decision gate
+
+REACHED — Phase 9 not started
 ```
 
 ---
@@ -549,8 +634,9 @@ Phase 7
 
 Phase status
 
-**Phase 7 — Repository Structure Audit is complete. Structural refactoring was
-not triggered or required. Phase 8 has not started.**
+**Phase 8 — Candidate 1 and Candidate 2 Workflow Validation is complete. Final
+evidence is sufficient, repeatability is established through Candidate 2, and
+the Phase 9 decision gate is reached. Phase 9 has not started.**
 
 Assume:
 
@@ -560,19 +646,28 @@ Assume:
 - No confirmed recurring workflow gap exists.
 - Phase 7 audit and final verification are complete.
 - Phase 7.2 was not triggered and was not required.
+- Phase 8 Candidate 1 and Candidate 2 workflow validation is complete.
+- Candidate 2 provided the comparable repeat-validation evidence; repeatability
+  and usability evidence are established.
+- The Phase 9 decision gate is reached, but Phase 9 has not started.
 - All workflow documentation already exists.
 
 Current state
 
 The Phase 6 project/milestone closure remains recorded without activating any
-advanced capability. Option C remains preserved, Architecture Frozen is not
-declared, and existing KHWAMI governance remains unchanged. Phase 7 is complete
-with no structural refactoring required. Phase 8 may be considered later as a
-separate scope; it has not started and is not initiated by this record.
+deferred advanced capability. Option C remains preserved, Architecture Frozen is
+not declared, and existing KHWAMI governance remains unchanged. Phase 8 is
+complete with sufficient combined Candidate 1 and Candidate 2 evidence,
+repeatability established through Candidate 2, and a positive usability
+observation. The Phase 9 decision gate is reached, but Phase
+9 is a separate scope and has not started.
 
 Do not repeat F-01, F-02, F-03, Architecture Freeze analysis, or Option C work.
 Do not activate or evaluate a deferred Phase 6 capability without the evidence
 and authorization required by the activation condition.
+
+Do not start Phase 9 through this roadmap record. A separate Phase 9 proposal,
+scoping decision, and permission are required before CLI design or implementation.
 
 Do not restart the roadmap.
 
