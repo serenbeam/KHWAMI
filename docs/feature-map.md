@@ -59,7 +59,7 @@ It excludes individual prompt internals, application features, runtime flows, an
 - `docs/architecture.md` - responsibility layers, boundaries, and information flows.
 - `prompts/README.md` and `prompts/TEMPLATE.md` - prompt-library structure and authoring conventions.
 - `ROADMAP.md` - completed capabilities, Phase 4 and 5 deliverables, and future roadmap phases.
-- `WORKSPACE_STATE.md` - completed Phase 5 milestone, KHWAMI priorities, and environment.
+- `WORKSPACE_STATE.md` - current KHWAMI state, priorities, decisions, environment, and continuation context.
 - `agents/PERSONAL_AGENTS.md` and `instructions/global/` - authoritative guidance assets mapped above.
 
 ## Maintenance

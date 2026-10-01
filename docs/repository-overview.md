@@ -6,7 +6,7 @@ Provide a high-level index of KHWAMI so AI assistants can locate its reusable gu
 
 ## Context
 
-This repository contains KHWAMI's documentation-first resources for standardizing AI-assisted software engineering across projects. `ROADMAP.md` and `WORKSPACE_STATE.md` record Phase 6 project/milestone closure, while Phase 5 remains the latest activated capability and Phase 7 is next but not started.
+This repository contains KHWAMI's documentation-first resources for standardizing AI-assisted software engineering across projects. `ROADMAP.md` owns the phase plan and history; `WORKSPACE_STATE.md` owns the current operational snapshot. Phase 9 — CLI Architecture & Design is complete, Phase 10 is next and not started, and Phase 5 remains the latest activated capability.
 
 KHWAMI separates reusable engineering standards, operational instructions, task prompts, and repository knowledge. This overview describes KHWAMI itself; detailed guidance remains in its authoritative documents.
 
@@ -24,10 +24,10 @@ It excludes detailed architecture, feature mapping, decisions, task procedures, 
 | --- | --- |
 | Repository type | KHWAMI documentation repository and reusable engineering asset library. |
 | Primary objective | Standardize AI-assisted engineering practices, reusable prompts, repository guidance, and repository intelligence. |
-| Latest completed project/milestone | Phase 6 — Project/Milestone Closure. |
+| Latest completed phase/milestone | Phase 9 — CLI Architecture & Design. |
 | Latest activated capability | Phase 5 — KHWAMI Optimization. |
 | Phase 6 advanced capability | Inactive / deferred. |
-| Next phase | Phase 7 — Repository Structure Audit (not started). |
+| Next phase | Phase 10 — CLI MVP Implementation (not started). |
 
 ### Structure
 
@@ -67,7 +67,8 @@ It excludes detailed architecture, feature mapping, decisions, task procedures, 
 | `instructions/repository/copilot_instructions-template.md` | Starting template for repository-specific AI guidance. |
 | `docs/TEMPLATE.md` | Shared standard for repository-intelligence documents. |
 | `KHWAMI_OPERATING_CONTRACT.md` | Canonical KHWAMI operating rules and change-control contract. |
-| `ROADMAP.md` and `WORKSPACE_STATE.md` | KHWAMI plan, completion status, priorities, and environment record. |
+| `ROADMAP.md` | KHWAMI phase plan, phase history, deliverables, milestones, and future direction. |
+| `WORKSPACE_STATE.md` | KHWAMI current status, objective, priorities, environment, decisions, and continuation instructions. |
 
 ## References
 
@@ -92,4 +93,4 @@ Revise or remove claims when their source documents no longer support them. Do n
 - The repository instruction template is `instructions/repository/copilot_instructions-template.md`.
 - Phase 6 project/milestone work is complete; its advanced capability remains inactive/deferred.
 - Phase 5 — KHWAMI Optimization remains the latest activated capability. Phase 4's four core documents remain `repository-overview.md`, `architecture.md`, `feature-map.md`, and `decisions.md`.
-- Phase 7 — Repository Structure Audit is next and has not started.
+- Phase 7 — Repository Structure Audit is complete; Phase 9 is complete and Phase 10 is next and not started.

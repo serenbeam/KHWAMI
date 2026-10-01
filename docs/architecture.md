@@ -8,7 +8,7 @@ Describe KHWAMI's documentation architecture: its responsibility layers, their r
 
 KHWAMI is a documentation-first repository, not a deployable software system. Its architecture organizes reusable engineering assets by responsibility so that guidance, task requests, and repository knowledge remain distinct.
 
-`ROADMAP.md` and `WORKSPACE_STATE.md` record KHWAMI Optimization as the completed Phase 5 milestone. This document complements `docs/repository-overview.md` by describing relationships and boundaries rather than repeating the repository inventory.
+`ROADMAP.md` owns KHWAMI's phase plan and history, while `WORKSPACE_STATE.md` owns the current operational snapshot. This document complements `docs/repository-overview.md` by describing relationships and boundaries rather than repeating the repository inventory.
 
 ## Scope
 

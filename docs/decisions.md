@@ -6,7 +6,7 @@ Record significant, evidence-supported decisions that explain why KHWAMI is orga
 
 ## Context
 
-KHWAMI's documentation-first resources standardize reusable assets for AI-assisted engineering. `ROADMAP.md` identifies the KHWAMI plan and `WORKSPACE_STATE.md` records the completed Phase 5 KHWAMI Optimization milestone.
+KHWAMI's documentation-first resources standardize reusable assets for AI-assisted engineering. `ROADMAP.md` identifies the phase plan and history, while `WORKSPACE_STATE.md` records the current operational state, including active priorities and the latest phase context.
 
 The repository has no dedicated ADR directory or formal decision-record format. The decisions below are reconstructed from current authoritative documentation and relevant Git history; unrecorded rationale and alternatives are identified as unknown.
 
@@ -77,7 +77,7 @@ KHWAMI governance remains unchanged.
 
 - `ROADMAP.md` - KHWAMI phases, phase objectives, core deliverables, and roadmap governance.
 - `KHWAMI_OPERATING_CONTRACT.md` - KHWAMI operating rules and change-control contract.
-- `WORKSPACE_STATE.md` - completed milestone, KHWAMI priorities, environment, and installed tooling.
+- `WORKSPACE_STATE.md` - current state, active priorities, environment, decisions, and installed tooling.
 - `docs/TEMPLATE.md` - repository-intelligence standard.
 - `docs/repository-overview.md` - repository identity and component context.
 - `docs/architecture.md` - responsibility layers and architectural boundaries.
