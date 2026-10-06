@@ -70,8 +70,9 @@ node ./src/cli/index.js [options]
 ```
 
 Supported options are listed below. `Mandatory` means required for the
-specified workflow; the CLI may collect that value interactively when running
-in a terminal.
+specified workflow's successful path. CREATE requirement and action values may
+be collected interactively when running in a terminal; ADOPT requires its
+objective as an explicit option.
 
 | Option | Status | Purpose |
 | --- | --- | --- |
@@ -82,7 +83,7 @@ in a terminal.
 | `--scope <text>` | Mandatory | CREATE initial functionality and scope. |
 | `--create-path <path>` | Mandatory | Explicit CREATE file path required for an executable CREATE action. |
 | `--create-content <text>` | Mandatory | Explicit CREATE file content required for an executable CREATE action. |
-| `--adopt-objective <text>` | Mandatory | Explicit ADOPT objective required for a bounded ADOPT proposal. |
+| `--adopt-objective <text>` | Mandatory | Explicit ADOPT objective required for a bounded proposal; no default or interactive collection. |
 
 After the proposal and Approved Scope are reviewed, the CLI requests Permission
 with `y`, `yes`, `n`, or `no` when the workflow requires it.
