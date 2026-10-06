@@ -45,6 +45,15 @@ dependencies. The package and executable name is `khwami`; when working from thi
 repository, use the local npm script or direct Node.js entry point below. The
 target should be an existing directory.
 
+### Getting Started / First Run
+
+From the KHWAMI repository root, choose an existing target directory and run
+`npm start -- --target <path> --intent <create|adopt>`. The CLI resolves the
+request as `CREATE`, `ADOPT`, or `AMBIGUOUS`; review the proposal and provide
+Permission when applicable. It then runs the applicable bounded
+execution/validation flow and reports a Terminal Result. This is the Phase 10
+MVP: ADOPT remains read-only and executable ADOPT mutation is deferred.
+
 ### Usage
 
 Run the local CLI through the npm script:
