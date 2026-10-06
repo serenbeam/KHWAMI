@@ -41,7 +41,8 @@ bounded, read-only ADOPT lifecycle. Phase 11 has not started.
 ### Requirements
 
 The CLI uses Node.js, plain JavaScript, and npm with no third-party runtime
-dependencies. The package and executable name is `khwami`; when working from this
+dependencies. No `npm install` step is required for the current dependency-free
+MVP. The package and executable name is `khwami`; when working from this
 repository, use the local npm script or direct Node.js entry point below. The
 target should be an existing directory.
 
@@ -68,18 +69,20 @@ The entry point can also be run directly:
 node ./src/cli/index.js [options]
 ```
 
-Supported options are:
+Supported options are listed below. `Mandatory` means required for the
+specified workflow; the CLI may collect that value interactively when running
+in a terminal.
 
-| Option | Purpose |
-| --- | --- |
-| `--target <path>` | Existing target directory; defaults to the current working directory. |
-| `--intent <create\|adopt>` | Optional workflow intent hint. |
-| `--purpose <text>` | CREATE project purpose. |
-| `--project-type <text>` | CREATE project type. |
-| `--scope <text>` | CREATE initial functionality and scope. |
-| `--create-path <path>` | Explicit CREATE file path. |
-| `--create-content <text>` | Explicit CREATE file content. |
-| `--adopt-objective <text>` | Explicit ADOPT objective. |
+| Option | Status | Purpose |
+| --- | --- | --- |
+| `--target <path>` | Optional | Existing target directory; defaults to the current working directory. |
+| `--intent <create\|adopt>` | Optional | Workflow intent hint; target evidence can also resolve the workflow. |
+| `--purpose <text>` | Mandatory | CREATE project purpose. |
+| `--project-type <text>` | Mandatory | CREATE project type. |
+| `--scope <text>` | Mandatory | CREATE initial functionality and scope. |
+| `--create-path <path>` | Mandatory | Explicit CREATE file path required for an executable CREATE action. |
+| `--create-content <text>` | Mandatory | Explicit CREATE file content required for an executable CREATE action. |
+| `--adopt-objective <text>` | Mandatory | Explicit ADOPT objective required for a bounded ADOPT proposal. |
 
 After the proposal and Approved Scope are reviewed, the CLI requests Permission
 with `y`, `yes`, `n`, or `no` when the workflow requires it.
