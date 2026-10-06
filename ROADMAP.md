@@ -1,8 +1,8 @@
 # KHWAMI Roadmap
 
-> Last Updated: 2026-09-30
-> Version: 3.5
-> Roadmap Status: Phase 9 — CLI Architecture & Design complete; Phase 10 — CLI MVP Implementation next / not started
+> Last Updated: 2026-10-01
+> Version: 3.6
+> Roadmap Status: Phase 9 — CLI Architecture & Design complete; Phase 10 — CLI MVP Implementation closed for the bounded MVP scope; Phase 10.1 through Phase 10.7 complete; actual executable ADOPT mutations remain future scope
 > Capability Status: Phase 6 advanced capability inactive / deferred
 
 ---
@@ -366,7 +366,7 @@ architecture remain defined in `KHWAMI_WORKFLOW_CONTROL.md`. This roadmap record
 Phase 9's outcome and implementation readiness; it does not create a competing
 authority or architecture.
 
-CLI implementation is not present.
+At Phase 9 completion, CLI implementation was not present. Phase 10.1 now provides the minimal CLI project bootstrap and runtime boundary.
 
 MVP Scope
 
@@ -382,7 +382,245 @@ CLI architecture and detailed MVP boundary remain defined in
 
 Status
 
-NEXT / NOT STARTED
+CLOSED — Phase 10.1 through Phase 10.7 complete for the bounded MVP scope; actual executable ADOPT mutations remain future scope
+
+### Phase 10.1 — CLI Project Bootstrap & Runtime Boundary
+
+Status
+
+COMPLETE
+
+Outcome
+
+The Node.js/npm CLI project bootstrap and minimal CLI-to-Core runtime boundary
+were implemented with plain JavaScript, zero third-party dependencies, and no
+CLI framework. The CLI remains a presentation/input boundary; workflow
+authority and lifecycle behavior remain unimplemented and governed by the
+Phase 9 architecture.
+
+### Phase 10.2 — CLI Input & Context Initialization
+
+Status
+
+COMPLETE
+
+Outcome
+
+The CLI now captures an optional target and explicit workflow-intent hint while
+Core performs read-only target inspection and resolves CREATE, ADOPT, or
+AMBIGUOUS. Ambiguous and conflicting evidence produces explicit clarification
+without selecting a default workflow or executing any workflow.
+
+### Phase 10.3 — Workflow Controller Integration
+
+Status
+
+COMPLETE
+
+Outcome
+
+A single stateless Core Workflow Controller now consumes the Phase 10.2 context
+result and represents CREATE, ADOPT, or unresolved Context Resolution routing.
+It does not reclassify evidence, execute workflows, own governance, or introduce
+lifecycle state.
+
+### Phase 10.4 — Proposal, Review & Permission Interaction
+
+Status
+
+COMPLETE
+
+Outcome
+
+The single Core Workflow Controller now represents bounded CREATE/ADOPT future
+workflow proposals, preserves context and evidence, and interprets canonical
+permission input as AUTHORIZED, REJECTED, or UNRESOLVED. The CLI presents the
+proposal before permission, and Phase 10.4 stops without executing workflows.
+
+### Phase 10.5 — Execution, Validation & Terminal Result Integration
+
+Status
+
+COMPLETE — bounded MVP scope
+
+Outcome
+
+Phase 10.5 provides Core-owned execution, validation, and Terminal Result
+boundaries for the current MVP. Explicit resolved CREATE file actions execute
+and validate successfully. ADOPT supports an authorized read-only Approved
+Scope with blocked/non-mutating execution, unchanged-target validation, and a
+non-success terminal result. Actual executable ADOPT mutations remain future
+scope.
+
+### Phase 10.6 — Error, Conflict & No-Change Handling
+
+Status
+
+COMPLETE
+
+Outcome
+
+The existing Workflow Controller now preserves bounded execution and validation
+failure distinctions, blocks authorization/scope mismatches, propagates errors
+through execution/validation/terminal results, and preserves the distinction
+between blocked/unexecuted work and genuine No-Change. No retries, repair,
+scope expansion, or invented CREATE/ADOPT actions were added. Blocked,
+rejected, unresolved, and changed-target outcomes remain distinct from
+successful execution and genuine No-Change.
+
+### Phase 10.7 — MVP End-to-End Validation & Phase 10 Closure
+
+Status
+
+COMPLETE
+
+Outcome
+
+The complete bounded Phase 10 MVP was verified with the full test suite. CREATE
+E2E behavior remains passing. ADOPT `yes` and `no` CLI E2E flows pass through
+analysis, objective reconciliation, proposal, action derivation, Change
+Detection, Approved Scope, Permission, blocked/read-only execution, validation,
+and Terminal Result without mutating the target. Phase 10 is closed for the
+bounded MVP scope; actual executable ADOPT mutations remain future scope.
+
+### CREATE Analysis MVP — Pre-10.7 Prerequisite
+
+Status
+
+COMPLETE
+
+Outcome
+
+A read-only CREATE-specific analyzer now converts resolved CREATE context and
+available evidence into a structured Analysis Result. Bounded collection accepts
+project purpose, project type, and initial scope, then re-runs analysis without
+inventing defaults. CREATE project-shape analysis now derives provenance-aware
+application, platform, technology, runtime, organization, architecture,
+dependency, testing, and documentation characteristics. Unsupported decisions remain unresolved and no execution actions are
+invented; the bounded Phase 10 MVP is now validated through Phase 10.7.
+
+### CREATE Proposal Generation — 10.5.3
+
+Status
+
+COMPLETE
+
+Outcome
+
+Completed CREATE Analysis Results now produce a structured, reviewable CREATE
+proposal containing summary, provenance-aware REVIEW actions, preserved scope,
+risks, dependencies, validation expectations, unresolved review items, and
+readiness. Proposal generation does not perform Change Detection, create
+Approved Scope, request permission, or execute.
+
+### CREATE Executable-Action Derivation — 10.5.3.x
+
+Status
+
+COMPLETE — resolved-action prerequisite implemented
+
+Outcome
+
+Resolved concrete CREATE file decisions can now be classified as executable
+proposal actions with bounded paths, content, status, and provenance. Technology
+recommendations, generic project shape, missing content, unsupported actions,
+and out-of-scope paths remain REVIEW_REQUIRED. No templates, dependencies, or
+mutations are invented.
+
+### Change Detection & Approved Scope — 10.5.4
+
+Status
+
+COMPLETE — bounded scope prerequisite
+
+Outcome
+
+Proposal-relevant baselines and current state can be captured and compared for
+concrete action fixtures. NO_CHANGE can derive an exact Approved Scope after
+valid authorization; material change, proposal mismatch, rejection, unresolved
+permission, and scope mismatch fail closed. Execution remains owned by the
+separate workflow execution boundaries.
+
+### ADOPT Requirement / Objective Boundary
+
+Status
+
+COMPLETE — bounded read-only lifecycle prerequisite
+
+Outcome
+
+Resolved ADOPT context enters bounded read-only ADOPT Analysis and objective
+reconciliation. Explicit objectives are distinguished from target evidence;
+missing, broad, or conflicting objectives remain blocked/review-required. This
+boundary does not itself generate proposals or execute workflow actions.
+
+### ADOPT Proposal Generation
+
+Status
+
+COMPLETE — non-executable proposal boundary
+
+Outcome
+
+Grounded ADOPT requirement results now produce a non-executable proposal with
+objective, relevant existing areas, evidence, preservation scope, proposed
+change areas, risks, validation expectations, and unresolved review items.
+
+### ADOPT Action Derivation
+
+Status
+
+COMPLETE — review-only, non-executable
+
+Outcome
+
+Grounded ADOPT proposals now produce bounded review candidate actions with
+operation, target, purpose, rationale, evidence, provenance, and executable=false.
+Missing/non-ready/conflicting proposals remain unresolved.
+
+### ADOPT Change Detection & Approved Scope
+
+Status
+
+COMPLETE — bounded read-only scope
+
+Outcome
+
+Derived ADOPT actions now feed the shared Change Detection and Approved Scope
+boundaries. Proposal-relevant baselines capture the analyzed target area,
+material changes inside that area are detected, proposal identity conflicts and
+out-of-scope actions fail closed, and a valid no-change result can establish a
+bounded read-only ADOPT scope under the existing authorization contract.
+
+### ADOPT Permission Integration
+
+Status
+
+COMPLETE — ordered canonical Permission for the bounded read-only lifecycle
+
+Outcome
+
+ADOPT reuses the existing Permission interaction only after review and a valid
+bounded no-change scope. `y/yes` produces authorization bound to that scope,
+while `n/no` or invalid/out-of-order scope input cannot authorize it. REVIEW
+actions remain non-executable; authorized ADOPT scopes proceed through blocked
+execution, unchanged-target validation, terminal results, and CLI E2E. Actual
+executable ADOPT mutations remain future scope.
+
+### CREATE Execution, Validation & Terminal Integration — 10.5.5
+
+Status
+
+COMPLETE — explicit resolved CREATE actions only
+
+Outcome
+
+The normal CREATE review flow can accept explicit resolved file path and content
+decisions, derive a concrete CREATE action, establish Change Detection and
+Approved Scope, execute only the authorized file action, validate its content,
+and produce terminal SUCCESS. Review-only proposals remain blocked; no project
+templates or implicit actions are generated. Phase 10.7 validated the bounded
+Phase 10 MVP and closed the phase.
 
 Objective
 
@@ -425,7 +663,27 @@ Phase 10 must not:
 | Phase 7 — Repository Structure Audit | ✅ Complete |
 | Phase 8 — Candidate 1 and Candidate 2 Workflow Validation | ✅ Complete — final evidence assessment sufficient |
 | Phase 9 — CLI Architecture & Design | ✅ Complete — ready for Phase 10 |
-| Phase 10 — CLI MVP Implementation | Next / not started |
+| Phase 10.1 — CLI Project Bootstrap & Runtime Boundary | ✅ Complete |
+| Phase 10.2 — CLI Input & Context Initialization | ✅ Complete |
+| Phase 10.3 — Workflow Controller Integration | ✅ Complete |
+| Phase 10.4 — Proposal, Review & Permission Interaction | ✅ Complete |
+| Phase 10.5 — Execution, Validation & Terminal Result Integration | ✅ Complete — bounded MVP scope |
+| Phase 10.6 — Error, Conflict & No-Change Handling | ✅ Complete |
+| CREATE Analysis MVP — Pre-10.7 Prerequisite | ✅ Complete — validated for Phase 10 closure |
+| CREATE Project-Shape Analysis — 10.5.2 | ✅ Complete |
+| CREATE Proposal Generation — 10.5.3 | ✅ Complete — proposal boundary; execution handled separately |
+| CREATE Executable-Action Derivation — 10.5.3.x | ✅ Complete — resolved decisions only |
+| Change Detection & Approved Scope — 10.5.4 | ✅ Complete — bounded scope prerequisite |
+| CREATE Execution, Validation & Terminal Integration — 10.5.5 | ✅ Complete — explicit resolved CREATE actions only |
+| ADOPT Analysis — Read-Only Prerequisite | ✅ Complete — analysis/objective boundary implemented |
+| ADOPT Requirement / Objective Boundary | ✅ Complete — bounded read-only prerequisite |
+| ADOPT Proposal Generation | ✅ Complete — non-executable proposal |
+| ADOPT Action Derivation | ✅ Complete — review-only/non-executable |
+| ADOPT Change Detection & Approved Scope | ✅ Complete — bounded read-only scope |
+| ADOPT Permission Integration | ✅ Complete — bounded read-only lifecycle authorization |
+| ADOPT Execution, Validation & E2E | ✅ Complete — blocked/read-only MVP scope |
+| Phase 10.7 — MVP End-to-End Validation & Phase 10 Closure | ✅ Complete |
+| Phase 10 — CLI MVP Implementation | ✅ CLOSED — bounded MVP scope; mutating ADOPT future scope |
 
 ---
 

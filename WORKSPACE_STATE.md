@@ -1,7 +1,7 @@
 # KHWAMI State
 
-> Last Updated: 2026-09-30
-> Version: 3.5
+> Last Updated: 2026-10-01
+> Version: 3.6
 
 ---
 
@@ -36,7 +36,7 @@ Phase 10 — CLI MVP Implementation
 
 Status
 
-NEXT / NOT STARTED
+CLOSED — Phase 10.1 through Phase 10.7 complete for the bounded MVP scope. CREATE explicit execution/validation and ADOPT bounded read-only analysis, objective reconciliation, proposal, review-action derivation, Change Detection, Approved Scope, Permission, blocked execution, validation, terminal result, and E2E are complete. Actual executable ADOPT mutations remain future scope.
 
 Previous Completed Phase
 
@@ -48,7 +48,12 @@ COMPLETE — READY FOR PHASE 10
 
 CLI Status
 
-Unimplemented.
+Phase 10.1 through Phase 10.7 are implemented and validated for the bounded
+MVP scope. CREATE supports explicit resolved file execution, validation,
+terminal results, and E2E. ADOPT supports a complete read-only lifecycle through
+Permission, intentionally blocked/non-mutating execution, unchanged-target
+validation, terminal results, and CLI E2E for `yes` and `no`. Actual executable
+ADOPT mutations remain future scope.
 
 Phase 6 Advanced Capability Status
 
@@ -58,8 +63,9 @@ Inactive / Deferred.
 
 # Current Objective
 
-Proceed to Phase 10 — CLI MVP Implementation based on the approved Phase 9
-architecture.
+Preserve the completed Phase 10 bounded MVP based on the approved Phase 9
+architecture. Phase 10 is closed; future work must not introduce mutating ADOPT
+execution without a separately authorized scope.
 
 Implementation must remain subordinate to KHWAMI governance, the established
 authority hierarchy, the approved workflow lifecycle, Phase 9 architecture,
@@ -70,12 +76,17 @@ and No-Change behavior.
 
 # Current Task
 
-Begin Phase 10 CLI MVP implementation based on the approved Phase 9
-architecture.
+Phase 10.7 end-to-end validation and documentation closure are complete for the
+bounded MVP scope.
 
-First implementation work should follow the approved Phase 9 MVP scope,
-authority boundaries, lifecycle, target-resolution model, and interaction
-semantics.
+Phase 10.1 established the project bootstrap and runtime boundary. Phase 10.2
+established Core-owned input/context initialization and classification. Phase
+10.3 established the single Core Workflow Controller routing boundary. Phase
+10.4 established bounded proposal presentation and Core-owned permission-result
+interpretation. Phase 10.5 established bounded CREATE execution/validation and
+ADOPT blocked/read-only execution/validation. Phase 10.6 established bounded
+error/conflict propagation and preserved the genuine No-Change limitation.
+Phase 10.7 verified the complete lifecycle without target mutation.
 
 Do not redesign Phase 9 during implementation. Implementation choices remain
 subordinate to the authoritative workflow and governance documents.
@@ -84,7 +95,15 @@ subordinate to the authoritative workflow and governance documents.
 
 # Current Focus
 
-- Begin Phase 10 implementation without starting unrelated capability work.
+- Preserve the closed Phase 10 bounded MVP without starting unrelated capability work.
+- Preserve the Phase 10.1 bootstrap and runtime boundary.
+- Preserve the Phase 10.2 Core-owned context-resolution boundary.
+- Preserve the Phase 10.3 single Workflow Controller routing boundary.
+- Preserve the Phase 10.4 proposal/review/permission boundary.
+- Preserve the Phase 10.5 bounded CREATE execution/validation/terminal boundary and ADOPT blocked/read-only execution/validation limitation.
+- Preserve the Phase 10.6 bounded error/conflict/no-change boundary.
+- Preserve the ADOPT bounded Change Detection and read-only Approved Scope boundary.
+- Preserve ADOPT Permission ordering and canonical `y/yes` / `n/no` semantics.
 - Keep the CLI as a thin presentation/input boundary.
 - Preserve one Core-owned workflow authority.
 - Preserve explicit Permission and binding Approved Scope.
@@ -111,6 +130,14 @@ Editor
 Terminal
 
 - PowerShell
+
+CLI Runtime
+
+- Node.js
+- Plain JavaScript
+- npm
+- Zero third-party dependencies
+- No CLI framework
 
 Primary AI Tools
 
@@ -172,6 +199,30 @@ Enabled
 
 - Phase 10 implements the approved Phase 9 architecture; it does not redesign
   that architecture.
+- Phase 10.1 uses Node.js, plain JavaScript, npm, zero third-party dependencies,
+  and no CLI framework.
+- Phase 10.2 uses explicit target/intent input with Core-owned read-only context
+  classification and explicit AMBIGUOUS clarification.
+- Phase 10.3 uses one stateless Core Workflow Controller for routing only; it
+  does not reclassify or execute workflows.
+- Phase 10.4 keeps proposal and permission semantics in that controller and
+  defers execution to Phase 10.5.
+- Phase 10.5 does not invent concrete CREATE/ADOPT actions; authorized attempts
+  without scope stop as blocked/unresolved without mutation.
+- Phase 10.5.5 executes only explicit resolved CREATE file actions within
+  Approved Scope; the normal CLI review flow now supplies those decisions.
+- Phase 10.6 preserves bounded errors, safe-stop scope mismatches, validation
+  distinctions, and the genuine No-Change limitation without recovery.
+- ADOPT Change Detection captures bounded target baselines and material
+  changes/conflicts; Permission is available only after a valid reviewed
+  no-change bounded scope, and REVIEW actions remain non-executable.
+- CREATE Analysis MVP provides a read-only Analysis Result and bounded collection
+  of project purpose, project type, and initial scope. CREATE project-shape analysis
+  derives only evidence-traceable characteristics, proposal generation produces
+  reviewable proposals, 10.5.4 derives bounded scope only after NO_CHANGE and
+  valid permission, and 10.5.5 executes only concrete approved CREATE file
+  actions. The normal review flow supplies explicit action decisions. Phase 10.7
+  has validated and closed the bounded MVP.
 - The CLI remains a thin presentation/input boundary, and Core remains the
   single workflow authority.
 - Permission remains explicit and Approved Scope remains binding.
@@ -216,7 +267,7 @@ When continuing KHWAMI:
   direction.
 - Use this file for current status, task, focus, priorities, environment, and
   continuation instructions.
-- Continue with Phase 10 — CLI MVP Implementation.
+- Preserve the closed Phase 10 bounded MVP; do not start new Phase 10 implementation without separate authorization.
 - Implement the approved Phase 9 architecture; do not redesign it.
 - Keep the CLI as a thin presentation/input boundary with one Core-owned
   workflow authority.
@@ -233,18 +284,22 @@ When continuing KHWAMI:
 
 # Current Milestone
 
-Phase 9 — CLI Architecture & Design
+Phase 10 MVP Closure
 
 Status
 
-COMPLETE — READY FOR PHASE 10
+COMPLETE — bounded read-only lifecycle through E2E
 
 Completion note
 
-Phase 9 established the approved CLI architecture and boundary, context and
-target model, initialization and interaction flow, output model, CREATE /
-ADOPT / AMBIGUOUS handling, MVP scope, architecture consistency, and
-implementation readiness.
+ADOPT proposals derive bounded review actions, capture proposal-relevant
+baselines, detect no-change and material target changes/conflicts, reject
+out-of-scope actions, and request canonical Permission only after the reviewed
+bounded scope is valid. `y/yes` authorizes only the bounded read-only scope;
+`n/no` rejects it; REVIEW actions remain non-executable. Authorized ADOPT scopes
+proceed through blocked/non-mutating execution, unchanged-target validation,
+terminal results, and CLI E2E. Actual executable ADOPT mutations remain future
+scope.
 
 Detailed workflow integration, lifecycle, orchestration, authority, and CLI
 architecture remain authoritative in `KHWAMI_WORKFLOW_CONTROL.md`.
