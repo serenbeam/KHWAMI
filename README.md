@@ -107,6 +107,11 @@ Context
 → Terminal Result
 ```
 
+If the available target and intent information is insufficient to determine
+whether the request is `CREATE` or `ADOPT`, the context is `AMBIGUOUS`.
+KHWAMI does not proceed with execution in that state; the request must be
+clarified before the workflow can continue.
+
 ### CREATE
 
 CREATE supports explicit, resolved file actions within an authorized Approved
