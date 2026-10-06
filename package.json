@@ -1,0 +1,14 @@
+{
+  "name": "khwami",
+  "version": "0.0.0",
+  "private": true,
+  "description": "KHWAMI CLI bootstrap",
+  "type": "commonjs",
+  "bin": {
+    "khwami": "./src/cli/index.js"
+  },
+  "scripts": {
+    "start": "node ./src/cli/index.js",
+    "test": "node --test"
+  }
+}
